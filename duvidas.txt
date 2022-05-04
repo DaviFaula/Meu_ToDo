@@ -1,0 +1,19 @@
+DUVIDAS METEOR
+
+FILTRO:
+
+O SIGNIFICA O "$n"
+
+bfa922bda983c579d83c
+
+90001dc3164b893ef2f1f99022c0d48d42333d8c
+
+
+o que é isso de tracker/useState/ "hook"
+
+sintaxe das escritas das funções ex; .map e taskform
+
+porque o handle submit no taskform se chama e
+o que significa $set
+
+o que acontece em:   onClick={() => onCheckboxClick(task)}
