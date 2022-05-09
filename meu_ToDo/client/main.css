@@ -152,15 +152,18 @@ form.task-form {
 .login-form {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 62%;
 
   justify-content: center;
   align-items: right;
+  margin-bottom: 0%;
 }
 
 .login-form > div {
   margin: 8px;
+  margin-bottom: 0%;
 }
+
 
 .login-form > div > label {
   font-weight: bold;
@@ -178,19 +181,32 @@ form.task-form {
   font-size: 1em;
   margin-inline: 20%;
   margin-right: 30%;
+
 }
 
 .login-form > div > input:focus {
   outline: 0;
+  margin-bottom: 0%;
+
 }
 
 .login-form > div > button {
   background-color: #cad6d5;
   color: #1d553f;
-  margin-left:  20%; ;
+  margin-left:  20%; 
+  margin-bottom: 0%;
   width: 200px;
 }
 
+
+.Registro {
+  background-color: #cad6d5;
+  color: #1d553f;
+  margin-left:  20.5%; ;
+  margin-top: 0%;
+  width: 200px;
+
+}
 
 .user {
   display: flex;

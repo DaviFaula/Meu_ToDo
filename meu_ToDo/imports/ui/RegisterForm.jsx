@@ -1,24 +1,28 @@
 import { Meteor } from 'meteor/meteor';
 import React, {useState} from 'react';
-import { RegisterForm } from './RegisterForm';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { Accounts } from 'meteor/accounts-base';
 
-export const LoginForm = () => {
+
+
+export const RegisterForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const submit = e => {
         e.preventDefault();
-        Meteor.loginWithPassword(username, password);
+        if (!Accounts.findUserByUsername(username)) {
+            Accounts.createUser({
+              username: username,
+              password: password,
+            });
+          }
     };
     return (
-        <form onSubmit={submit} className="login-form">
+        <form onSubmit={submit} className="register-form">
             
-            <h2>
-                Olá :)
-            </h2>
+
             <h3> 
-                Faça login para gerenciar suas tarefas
+                Crie sua conta!
             </h3>
 
             <div>
@@ -34,7 +38,7 @@ export const LoginForm = () => {
             </div>
 
             <div>
-                <label htmlFor="password">Senha</label>
+                <label htmlFor="password">Crie sua senha</label>
 
                 <input
                     type="password"
@@ -46,7 +50,7 @@ export const LoginForm = () => {
             </div>
 
             <div>
-                <button className='bl1' type="submit">Entrar</button>
+                <button className='bl2' type="submit">Registrar e logar</button>
             </div>
         </form>
      

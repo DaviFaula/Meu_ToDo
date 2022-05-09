@@ -8,6 +8,7 @@ import { LoginForm } from './LoginForm';
 
 
 
+
 const toggleChecked = ({ _id, isChecked }) => {
   TasksCollection.update(_id, {
     $set: {
@@ -92,7 +93,10 @@ export const App = () => {
             </ul>
           </Fragment>
         ) : (
-          <LoginForm />
+            <Fragment>
+              <LoginForm />             
+              <button className='Registro' type="submit">Criar conta</button>
+           </Fragment>
         )}
       </div>
     </div>
