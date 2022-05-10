@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React, {useState} from 'react';
-import { RegisterForm } from './RegisterForm';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
 
 export const LoginForm = () => {
     const [username, setUsername] = useState('');

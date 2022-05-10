@@ -5,17 +5,18 @@ import { TasksCollection } from '/imports/api/TasksCollection';
 import { Task } from './Task';
 import { TaskForm } from './TaskForm';
 import { LoginForm } from './LoginForm';
+import { Link , Outlet} from 'react-router-dom';
 
 
 
 
-const toggleChecked = ({ _id, isChecked }) => {
+function toggleChecked({ _id, isChecked }) {
   TasksCollection.update(_id, {
     $set: {
       isChecked: !isChecked
     }
-  })
-};
+  });
+}
 
 const deleteTask = ({ _id }) => TasksCollection.remove(_id);
 
@@ -49,14 +50,25 @@ export const App = () => {
   });
 
   const pendingTasksTitle = `${pendingTasksCount ? `(${pendingTasksCount})` : ''}`;
-  const logout =()=> Meteor.logout();
+  const logout = () => Meteor.logout();
 
+  /*
+        <Router>
+           <Header/>
+           <Switch>
+              <Route path='\Registro'/>
+           </Switch>
+         </Router>
+
+         */
 
 
   // console.log(tasks);
 
   return (
+
     <div className='app'>
+
       <header>
         <div className='app-bar'>
           <div className='app-header'>
@@ -68,13 +80,15 @@ export const App = () => {
         </div>
       </header>
 
+
+
       <div className='main'>
         {user ? (
           <Fragment>
             <div className='user' onClick={logout}>
               {user.username}|sair
             </div>
-            <TaskForm user={user}/>
+            <TaskForm user={user} />
             <div className='filter'>
               <button onClick={() => setHideCompleted(!hideCompleted)}>
                 {hideCompleted ? 'Mostrar tarefas ' : 'Ocultar completas'}
@@ -93,10 +107,16 @@ export const App = () => {
             </ul>
           </Fragment>
         ) : (
-            <Fragment>
-              <LoginForm />             
-              <button className='Registro' type="submit">Criar conta</button>
-           </Fragment>
+        
+          <Fragment>
+            
+            <LoginForm />
+            {
+              <Link to="/Reg">
+                <button className='Registro'>Criar conta</button>
+              </Link>
+            }
+          </Fragment>
         )}
       </div>
     </div>

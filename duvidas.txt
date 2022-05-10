@@ -7,8 +7,32 @@ O SIGNIFICA O "$n"
 bfa922bda983c579d83c
 
 90001dc3164b893ef2f1f99022c0d48d42333d8c
-
 -como editar tamanho da barra
+
+
 -o que é "$ne:"# ach que talvez seja para interromper a procura pela 
 tardefa ja que ela ja foi completa
 - como funciono  o pendingTasksTitle(simbolos)
+
+
+import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { render } from 'react-dom';
+import { App } from '/imports/ui/App';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Link , Outlet} from 'react-router-dom';
+
+
+
+Meteor.startup(() => {
+  render(<App/>
+  
+  
+  
+  
+  
+  
+  
+  
+   , document.getElementById('react-target'));
+});
