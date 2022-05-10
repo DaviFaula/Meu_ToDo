@@ -198,6 +198,20 @@ form.task-form {
   width: 200px;
 }
 
+.login-form h2{
+  font-size: 1.5em;
+  margin: 20%;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 2%;
+}
+
+.login-form h3{
+  margin: 20%;
+  margin-top: 1%;
+  margin-bottom: 5%;
+}
+
 
 .Registro {
   background-color: #cad6d5;
@@ -217,7 +231,58 @@ form.task-form {
   font-weight: bold;
 }
 
-.login-form h2{
+
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  height: 62%;
+
+  justify-content: center;
+  align-items: right;
+  margin-bottom: 0%;
+}
+
+.register-form > div {
+  margin: 8px;
+  margin-bottom: 0%;
+}
+
+
+.register-form > div > label {
+  font-weight: bold;
+  margin-left: 20%;
+
+}
+
+.register-form> div  > input {
+  
+  box-sizing: border-box;
+  padding: 10px 6px;
+  background: rgba(235, 250, 235, 0.295);
+  border: 1px solid #1d553f;
+  width: 400px;
+  font-size: 1em;
+  margin-inline: 20%;
+  margin-right: 30%;
+
+}
+
+.register-form > div > input:focus {
+  outline: 0;
+  margin-bottom: 0%;
+
+}
+
+.btn-Registrar {
+  background-color: #cad6d5;
+  color: #1d553f;
+  margin-left:  20%; 
+  margin-bottom: 0%;
+  width: 200px;
+}
+
+.register-form h2{
   font-size: 1.5em;
   margin: 20%;
   display: inline-block;
@@ -225,10 +290,8 @@ form.task-form {
   margin-top: 2%;
 }
 
-.login-form h3{
+.register-form h3{
   margin: 20%;
   margin-top: 1%;
   margin-bottom: 5%;
 }
-
-

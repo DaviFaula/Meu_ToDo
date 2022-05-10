@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, {useState} from 'react';
 import { Accounts } from 'meteor/accounts-base';
-
+import { Link } from 'react-router-dom';
 
 
 export const RegisterForm = () => {
@@ -50,7 +50,9 @@ export const RegisterForm = () => {
             </div>
 
             <div>
-                <button className='bl2' type="submit">Registrar e logar</button>
+                <Link to ='/'>
+                    <button className='btn-Registrar' type="submit">Registrar e logar</button>
+                </Link>
             </div>
         </form>
      
