@@ -88,11 +88,27 @@ header {
   margin-right: 1em;
 }
 
-form.task-form {
+.task-form {
    
-  display: flex;
-  margin: 15px;
 
+  margin-right: 0px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+
+}
+
+.in-tarefa{
+  width: 90%;
+  height: 25px;
+  margin-right: 0.1%;
+
+}
+.ts-btn{
+  min-width: auto;
+  height: auto;
+  color: #1d553f;
+  background-color: #dbd2d8;
 }
 
 .task-form > input {
@@ -100,7 +116,6 @@ form.task-form {
   box-sizing: border-box;
   background: transparent;
   border: 1px solid #aaa;
-  width: 100%;
   font-size: 1em;
   margin-right: 15px;
 }
@@ -111,11 +126,8 @@ form.task-form {
   
 }
 
-.task-form > button {
-  min-width: auto;
-  height: auto;
-  background-color: #fa2444;
-}
+
+
 .tasks {
   list-style-type: none;
   padding-inline-start: 0;
@@ -195,7 +207,7 @@ form.task-form {
   color: #1d553f;
   margin-left:  20%; 
   margin-bottom: 0%;
-  width: 200px;
+  width: 195px;
 }
 
 .login-form h2{
@@ -216,9 +228,9 @@ form.task-form {
 .Registro {
   background-color: #cad6d5;
   color: #1d553f;
-  margin-left:  20.5%; ;
+  margin-left:  1%; ;
   margin-top: 0%;
-  width: 200px;
+  width: 195px;
 
 }
 
@@ -278,10 +290,19 @@ form.task-form {
   background-color: #cad6d5;
   color: #1d553f;
   margin-left:  20%; 
+  margin-right: 1%;
   margin-bottom: 0%;
-  width: 200px;
+  width: 195px;
 }
 
+.btn-Logar {
+  background-color: #cad6d5;
+  color: #1d553f;
+  margin-left:  0%; 
+  margin-right: 1%;
+  margin-bottom: 0%;
+  width: 195px;
+}
 .register-form h2{
   font-size: 1.5em;
   margin: 20%;
@@ -294,4 +315,34 @@ form.task-form {
   margin: 20%;
   margin-top: 1%;
   margin-bottom: 5%;
+}
+
+.opcoes{
+  margin: 18%;
+  margin-top: 1%;
+  margin-bottom: 5%;
+  height: 400%;
+  width: 65%;
+  border: 3px solid #8708ad;
+  border-radius: 7%;
+  background-color: #bb83f0;
+  display: flex;
+}
+
+.btn_opcoes{
+  width: 20%;
+  height: 20%;
+  background-color: #00c96b;
+  color: #03160d;
+  border: 3px solid #197e40;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 195px;
+}
+.btn_opcoes:hover{
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

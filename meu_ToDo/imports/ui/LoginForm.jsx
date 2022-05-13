@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React, {useState} from 'react';
-
+import { Link , Outlet} from 'react-router-dom';
 
 export const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -11,6 +11,18 @@ export const LoginForm = () => {
         Meteor.loginWithPassword(username, password);
     };
     return (
+        
+        <div className='app'>
+        <header>
+        <div className='app-bar'>
+          <div className='app-header'>
+            <h1>
+              Tarefas.com
+            </h1>
+          </div>
+        </div>
+      </header>
+
         <form onSubmit={submit} className="login-form">
             
             <h2>
@@ -46,8 +58,14 @@ export const LoginForm = () => {
 
             <div>
                 <button className='bl1' type="submit">Entrar</button>
+                {
+              <Link to="/Reg">
+                <button className='Registro'>Criar conta</button>
+              </Link>
+            }
             </div>
         </form>
+        </div>
      
   );  
 }

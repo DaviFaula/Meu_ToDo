@@ -19,15 +19,16 @@ export const TaskForm = ({ user }) => {
     };
 
     return (
-        <form  onSubmit={handleSubmit} classname="task-form">
+        <form  onSubmit={handleSubmit} className="task-form">
             <div>
-                <input
+                <input 
+                    className='in-tarefa'
                     type="text"
                     placeholder="Digite sua nova tarefa!"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 />
-                <button type="submit">+</button>
+                <button className='ts-btn' type="submit">+</button>
             </div>
             
         </form>
