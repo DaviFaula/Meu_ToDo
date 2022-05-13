@@ -4,6 +4,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import { Task } from './Task';
 import { TaskForm } from './TaskForm';
+import { Link } from 'react-router-dom';
 
 
 
@@ -48,7 +49,7 @@ export const GerirTarefas = () => {
     });
   
     const pendingTasksTitle = `${pendingTasksCount ? `(${pendingTasksCount})` : ''}`;
-    const logout = () => Meteor.logout();
+
   
   
   
@@ -74,8 +75,8 @@ export const GerirTarefas = () => {
   
         <div className='main'>
             <Fragment>
-              <div className='user' onClick={logout}>
-                {user.username}|sair
+              <div className='user' >
+                 <Link to='/'>Voltar ao Painel inicial</Link>
               </div>
               <TaskForm user={user} />
               <div className='filter'>

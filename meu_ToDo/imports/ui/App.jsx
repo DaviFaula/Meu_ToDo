@@ -3,8 +3,7 @@ import React, { useState, Fragment } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 
 import { LoginForm } from './LoginForm';
-import { Link , Outlet} from 'react-router-dom';
-import {GerirTarefas} from '/imports/ui/GerirTarefas';
+import { Link } from 'react-router-dom';
 
 
 
@@ -13,7 +12,7 @@ export const App = () => {
   const logout = () => Meteor.logout();
 
 
- 
+
 
 
   // console.log(tasks);
@@ -22,45 +21,47 @@ export const App = () => {
 
 
 
-      <div className='main'>
-        {user ? (
+    <div className='main'>
+      {user ? (
 
-            <div className='app'>
-             <header>
-              <div className='app-bar'>
-                <div className='app-header'>
-                  <h2>
-                    Tarefas.com
-                  </h2>
-                </div>
-                <h3>Painel inicial</h3>
+        <div className='app'>
+          <header>
+            <div className='app-bar'>
+              <div className='app-header'>
+                <h2>
+                  Tarefas.com
+                </h2>
               </div>
-            </header>
-            <Fragment>
-                <div className='user' onClick={logout}>
-                  {user.username}|sair
-                </div>
-                <div className='opcoes'>
-                  <button className='btn_opcoes'>
-                   Gerir Tarefas
-                  </button>
-                </div>
-              </Fragment>
+              <h3>Painel inicial</h3>
             </div>
-
-
-
-             // <GerirTarefas/>
-          
-        ) : (
-        
+          </header>
           <Fragment>
-            
-            <LoginForm />
-            
-
+            <div className='user' onClick={logout}>
+              {user.username}|sair
+            </div>
+            <div className='opcoes'>
+              <Link to='/Gerir'>
+                <button className='btn_opcoes'>
+                  Gerir Tarefas
+                </button>
+              </Link>
+            </div>
           </Fragment>
-        )}
-      </div>
+        </div>
+
+
+
+        // <GerirTarefas/>
+
+      ) : (
+
+        <Fragment>
+
+          <LoginForm />
+
+
+        </Fragment>
+      )}
+    </div>
   );
 };
