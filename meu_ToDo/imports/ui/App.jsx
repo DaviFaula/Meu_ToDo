@@ -1,9 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, Fragment } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-
 import { LoginForm } from './LoginForm';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 
 
@@ -39,13 +38,14 @@ export const App = () => {
             <div className='user' onClick={logout}>
               {user.username}|sair
             </div>
-            <div className='opcoes'>
+            <nav className='opcoes'>
               <Link to='/Gerir'>
                 <button className='btn_opcoes'>
                   Gerir Tarefas
                 </button>
               </Link>
-            </div>
+            </nav>
+            <Outlet/>
           </Fragment>
         </div>
 

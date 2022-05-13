@@ -75,9 +75,10 @@ export const GerirTarefas = () => {
   
         <div className='main'>
             <Fragment>
-              <div className='user' >
-                 <Link to='/'>Voltar ao Painel inicial</Link>
-              </div>
+              <nav className='user' >
+                 <Link to='/'>Voltar ao painel inicial</Link>
+              </nav>
+             
               <TaskForm user={user} />
               <div className='filter'>
                 <button onClick={() => setHideCompleted(!hideCompleted)}>
@@ -95,6 +96,7 @@ export const GerirTarefas = () => {
                   />
                 ))}
               </ul>
+            
             </Fragment>
         </div>
       </div>
