@@ -5,7 +5,9 @@ import { TasksCollection } from '/imports/api/TasksCollection';
 import { Task } from './Task';
 import { TaskForm } from './TaskForm';
 import { Link } from 'react-router-dom';
-
+import IconButton from '@mui/material/IconButton';
+import HomeIcon from '@mui/icons-material/Home';
+import { Button } from '@mui/material';
 
 
 function toggleChecked({ _id, isChecked }) {
@@ -76,7 +78,11 @@ export const GerirTarefas = () => {
         <div className='main'>
             <Fragment>
               <nav className='user' >
-                 <Link to='/'>Voltar ao painel inicial</Link>
+                 <Link to='/'>
+                   <IconButton size="small">
+                      <HomeIcon/>
+                   </IconButton>
+                 </Link>
               </nav>
              
               <TaskForm user={user} />

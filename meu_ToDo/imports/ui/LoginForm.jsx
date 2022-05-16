@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import React, {useState} from 'react';
-import { Link , Outlet} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Fingerprint from '@mui/icons-material/Fingerprint';
 
 export const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -57,10 +60,10 @@ export const LoginForm = () => {
             </div>
 
             <div>
-                <button className='bl1' type="submit">Entrar</button>
+                <Button className='bl1' variant="contained" type="submit" endIcon={<Fingerprint/>}>Entrar</Button>
                 {
-              <Link to="/Reg">
-                <button className='Registro'>Criar conta</button>
+              <Link to="/Reg" className='Link_rotas'>
+                <Button className='Registro' variant="contained" >Criar conta</Button>
               </Link>
             }
             </div>

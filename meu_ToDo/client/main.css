@@ -203,10 +203,6 @@ header {
 }
 
 .login-form > div > button {
-  background-color: #cad6d5;
-  color: #1d553f;
-  margin-left:  20%; 
-  margin-bottom: 0%;
   width: 195px;
 }
 
@@ -226,13 +222,15 @@ header {
 
 
 .Registro {
-  background-color: #cad6d5;
-  color: #1d553f;
-  margin-left:  1%; ;
-  margin-top: 0%;
-  width: 195px;
 
+  width: 190px;
+  
 }
+
+.Link_rotas{
+  text-decoration: none;
+}
+
 
 .user {
   display: flex;
@@ -287,21 +285,12 @@ header {
 }
 
 .btn-Registrar {
-  background-color: #cad6d5;
-  color: #1d553f;
-  margin-left:  20%; 
-  margin-right: 1%;
-  margin-bottom: 0%;
-  width: 195px;
+
+  width: 190px;
 }
 
 .btn-Logar {
-  background-color: #cad6d5;
-  color: #1d553f;
-  margin-left:  0%; 
-  margin-right: 1%;
-  margin-bottom: 0%;
-  width: 195px;
+  width: 190px;
 }
 .register-form h2{
   font-size: 1.5em;
@@ -318,31 +307,30 @@ header {
 }
 
 .opcoes{
-  margin: 18%;
-  margin-top: 1%;
+  margin: auto;
+  margin-top: 5%;
   margin-bottom: 5%;
-  height: 400%;
-  width: 65%;
+
+  height: 60%;
+  width: 400px;
   border: 3px solid #8708ad;
-  border-radius: 7%;
-  background-color: #bb83f0;
+  border-radius: 2%;
+  background-color: #ae68f0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .btn_opcoes{
-  width: 40%;
-  height: 100px;
-  background-color: #00c96b;
-  color: #03160d;
-  border: 3px solid #197e40;
-  border-radius: 5%;
+  height: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 150px;
+}
 
-  width: 195px;
+.btns-acesso{
+margin-left: 20%;
 }
 .btn_opcoes:hover{
   color: white;

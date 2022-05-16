@@ -3,6 +3,14 @@ import React, { useState, Fragment } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 import { LoginForm } from './LoginForm';
 import { Link, Outlet } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import AccountBox from '@mui/icons-material/AccountBox';
+import Stack from '@mui/material/Stack';
+
+
+
+
+
 
 
 
@@ -38,14 +46,19 @@ export const App = () => {
             <div className='user' onClick={logout}>
               {user.username}|sair
             </div>
-            <nav className='opcoes'>
-              <Link to='/Gerir'>
-                <button className='btn_opcoes'>
+            <Stack className='opcoes' direction="row" spacing={2}>
+
+              <Button className='btn_opcoes' variant="contained" endIcon={<AccountBox />}>
+                Meu Perfil
+              </Button>
+
+              <Link to='/Gerir' className='Link_rotas'>
+                <Button className='btn_opcoes' variant="contained">
                   Gerir Tarefas
-                </button>
+                </Button>
               </Link>
-            </nav>
-            <Outlet/>
+            </Stack>
+            <Outlet />
           </Fragment>
         </div>
 

@@ -2,23 +2,27 @@ import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
 import { Accounts } from 'meteor/accounts-base';
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+
 
 
 
 export const RegisterForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState(''); 
+    const [email, setEmail] = useState(''); 
 
     const registro = e => {
 
         e.preventDefault();
-        console.log((password))
     
     //    if (!Accounts.findUserByUsername(username)) {
             
             Accounts.createUser({
                 username: username,
                 password: password,
+                email: email,
           });
       //  }
        
@@ -70,10 +74,22 @@ export const RegisterForm = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="email">Coloque um email válido</label>
+
+                        <input
+                            type="text"
+                            placeholder="Digite seu email"
+                            name="email"
+                            required
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
                         
-                            <button className='btn-Registrar' type="submit">Registrar</button>
-                            <Link to="/">
-                              <button className='btn-Logar'>Tela de Login</button>
+                            <Button className='btn-Registrar' type="submit" variant="contained" endIcon={<SendIcon/>}>Registrar</Button>
+                            <Link to="/" className='Link_rotas'>
+                              <Button className='btn-Logar' variant="contained">Tela de Login</Button>
                             </Link>
                     </div>
                 </form>
