@@ -3,6 +3,8 @@ DUVIDAS
 
 - o que é o fragment
 - Pra que serve o Outlet, não enntendi o funcionamento
+- Como funciona     const pendingOnlyFilter = { ...hideCompletedFilter, ...userFilter };
+
 
 
     <li>

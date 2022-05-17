@@ -7,6 +7,9 @@ import { TaskForm } from './TaskForm';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
+import Button from '@mui/material/Button';
+import { Stack } from '@mui/material';
+
 
 
 function toggleChecked({ _id, isChecked }) {
@@ -78,18 +81,18 @@ export const GerirTarefas = () => {
             <Fragment>
               <nav className='user' >
                  <Link to='/'>
-                   <IconButton size="small">
+                   <IconButton size="small" color='success'>
                       <HomeIcon/>
                    </IconButton>
                  </Link>
               </nav>
              
               <TaskForm user={user} />
-              <div className='filter'>
-                <button onClick={() => setHideCompleted(!hideCompleted)}>
+              <Stack display ="flex"  justifyContent="center" alignItems="center"  margin={1}>
+                <Button  onClick={() => setHideCompleted(!hideCompleted)} variant="contained" color='info'>
                   {hideCompleted ? 'Mostrar tarefas ' : 'Ocultar completas'}
-                </button>
-              </div>
+                </Button>
+              </Stack>
               <ul className='tasks'>
                 {tasks.map(task => (
   
