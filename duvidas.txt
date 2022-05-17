@@ -3,3 +3,15 @@ DUVIDAS
 
 - o que é o fragment
 - Pra que serve o Outlet, não enntendi o funcionamento
+
+
+    <li>
+      <input
+         type = "checkbox"
+         checked = {!!task.isChecked}
+         onClick = {()=> onCheckboxClick(task)}
+         readOnly
+      />
+      <span>{task.text}</span>
+      <button onClick={()=> onDeleteClick(task) }>&times;</button>
+    </li>

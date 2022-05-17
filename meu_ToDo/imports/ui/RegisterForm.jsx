@@ -4,29 +4,29 @@ import { Accounts } from 'meteor/accounts-base';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-
+import Stack from '@mui/material/Stack';
 
 
 
 export const RegisterForm = () => {
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState(''); 
-    const [email, setEmail] = useState(''); 
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
 
     const registro = e => {
 
         e.preventDefault();
-    
-    //    if (!Accounts.findUserByUsername(username)) {
-            
-            Accounts.createUser({
-                username: username,
-                password: password,
-                email: email,
-          });
-      //  }
-       
-      
+
+        //    if (!Accounts.findUserByUsername(username)) {
+
+        Accounts.createUser({
+            username: username,
+            password: password,
+            email: email,
+        });
+        //  }
+
+
     };
     return (
 
@@ -77,20 +77,21 @@ export const RegisterForm = () => {
                         <label htmlFor="email">Coloque um email válido</label>
 
                         <input
-                            type="text"
+                            type="email"
                             placeholder="Digite seu email"
                             name="email"
                             required
                             onChange={e => setEmail(e.target.value)}
                         />
                     </div>
+                    <div className='btns_acesso'>
+                        <Stack direction="row" spacing={2}>
 
-                    <div>
-                        
-                            <Button className='btn-Registrar' type="submit" variant="contained" endIcon={<SendIcon/>}>Registrar</Button>
+                            <Button className='btn-Registrar' type="submit" variant="contained" endIcon={<SendIcon />}>Registrar</Button>
                             <Link to="/" className='Link_rotas'>
-                              <Button className='btn-Logar' variant="contained">Tela de Login</Button>
+                                <Button className='btn-Logar' variant="contained">Tela de Login</Button>
                             </Link>
+                        </Stack>
                     </div>
                 </form>
 

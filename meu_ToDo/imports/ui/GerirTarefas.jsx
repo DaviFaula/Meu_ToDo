@@ -7,7 +7,6 @@ import { TaskForm } from './TaskForm';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
-import { Button } from '@mui/material';
 
 
 function toggleChecked({ _id, isChecked }) {
@@ -35,7 +34,7 @@ export const GerirTarefas = () => {
       }
   
       return TasksCollection.find(
-        hideCompleted ? pendingOnlyFilter : userFilter,
+        hideCompleted ? pendingOnlyFilter : {},
         {
           sort: { createdAt: -1 },
         }

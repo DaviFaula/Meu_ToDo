@@ -171,10 +171,7 @@ header {
   margin-bottom: 0%;
 }
 
-.login-form > div {
-  margin: 8px;
-  margin-bottom: 0%;
-}
+
 
 
 .login-form > div > label {
@@ -202,9 +199,7 @@ header {
 
 }
 
-.login-form > div > button {
-  width: 195px;
-}
+
 
 .login-form h2{
   font-size: 1.5em;
@@ -253,10 +248,7 @@ header {
   margin-bottom: 0%;
 }
 
-.register-form > div {
-  margin: 8px;
-  margin-bottom: 0%;
-}
+
 
 
 .register-form > div > label {
@@ -329,8 +321,9 @@ header {
   width: 150px;
 }
 
-.btns-acesso{
-margin-left: 20%;
+.btns_acesso{
+  margin-top: 8px;
+  margin-left: 20%;
 }
 .btn_opcoes:hover{
   color: white;

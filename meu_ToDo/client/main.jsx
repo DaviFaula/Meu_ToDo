@@ -11,6 +11,7 @@ Meteor.startup(() => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}></Route>
+        <Route path="/Entrar" element={<App />}></Route>
         <Route path="/Reg" element={<RegisterForm />} />
         <Route path="/Gerir" element={<GerirTarefas />}></Route>
         <Route path="/Perfil" ></Route>

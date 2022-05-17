@@ -6,6 +6,7 @@ import { Link, Outlet } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import AccountBox from '@mui/icons-material/AccountBox';
 import Stack from '@mui/material/Stack';
+import { Navigate } from "react-router-dom";
 
 
 
@@ -62,14 +63,11 @@ export const App = () => {
           </Fragment>
         </div>
 
-
-
-        // <GerirTarefas/>
-
       ) : (
 
         <Fragment>
-
+           
+           
           <LoginForm />
 
 

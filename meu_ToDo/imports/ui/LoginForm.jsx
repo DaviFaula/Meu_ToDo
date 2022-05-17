@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 
 export const LoginForm = () => {
@@ -59,14 +59,17 @@ export const LoginForm = () => {
                 />
             </div>
 
-            <div>
-                <Button className='bl1' variant="contained" type="submit" endIcon={<Fingerprint/>}>Entrar</Button>
-                {
-              <Link to="/Reg" className='Link_rotas'>
-                <Button className='Registro' variant="contained" >Criar conta</Button>
-              </Link>
-            }
-            </div>
+          <div className='btns_acesso'>
+            <Stack direction="row" spacing={2}>
+
+              <Button className='Registro' variant="contained" type="submit" endIcon={<Fingerprint />}>Entrar</Button>
+              {
+                <Link to="/Reg" className='Link_rotas'>
+                  <Button className='Registro' variant="contained" >Criar conta</Button>
+                </Link>
+              }
+            </Stack>
+          </div>
         </form>
         </div>
      
