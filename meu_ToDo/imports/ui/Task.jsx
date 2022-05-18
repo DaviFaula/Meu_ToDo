@@ -5,8 +5,6 @@ import React from 'react';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
@@ -20,10 +18,10 @@ export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
   return (
 
 
-    <Box sx={{ flexGrow: 1}} display ="flex" justifyContent="center" alignItems="center">
+    <Box sx={{ flexGrow: 1}} display ="flex" justifyContent="center" alignItems="center" marginBottom={0.2}>
 
-      <List sx={{bgcolor: 'background.paper',flexGrow: 1, minWidth:'300px', maxWidth:'900px'}} >
-
+      <List  sx={{ bgcolor: 'background.paper',flexGrow: 1, minWidth:'300px', maxWidth:'900px', borderRadius:1.5, borderStyle:'groove'}} >
+        
         <ListItem>
         <Checkbox
         checked = {!!task.isChecked}

@@ -31,6 +31,7 @@ export const RegisterForm = () => {
     return (
 
         <div className='app'>
+            <div className='main'>
             <header>
                 <div className='app-bar'>
                     <div className='app-header'>
@@ -40,7 +41,7 @@ export const RegisterForm = () => {
                     </div>
                 </div>
             </header>
-            <div className='main'>
+            
 
                 <form onSubmit={registro} className="register-form">
 
@@ -62,7 +63,7 @@ export const RegisterForm = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="password">Crie sua senha</label>
+                        <label htmlFor="password" color='white'>Crie sua senha</label>
 
                         <input
                             type="password"
@@ -74,7 +75,7 @@ export const RegisterForm = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="email">Coloque um email válido</label>
+                        <label htmlFor="email" color='white'>Coloque um email válido</label>
 
                         <input
                             type="email"

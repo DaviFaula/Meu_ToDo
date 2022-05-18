@@ -44,8 +44,8 @@ export const App = () => {
             </div>
           </header>
           <Fragment>
-            <div className='user' onClick={logout}>
-              {user.username}|sair
+            <div className='user' onClick={logout} >
+              <h3 className='user'>{user.username}|sair</h3>
             </div>
             <Stack className='opcoes' direction="row" spacing={2}>
 

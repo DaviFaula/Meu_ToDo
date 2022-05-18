@@ -58,7 +58,11 @@ button:focus {
   flex-direction: column;
   flex-grow: 0.85;
   overflow: auto;
-  background: rgb(197, 238, 243);
+  background-image: radial-gradient(#3d2d4d, #149262 140%);
+  border-top-left-radius: 10px ;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .main::-webkit-scrollbar {
@@ -69,7 +73,11 @@ button:focus {
 
 header {
   background: #d2edf4;
-  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+  border-top-left-radius: 10px ;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-image: linear-gradient(to bottom, #3d2d4d, #149262 100%);
   padding: 20px 15px 15px 15px;
   position: relative;
   box-shadow: 0 3px 3px rgba(34, 25, 25, 0.4);
@@ -86,30 +94,43 @@ header {
   margin: 0;
   display: inline-block;
   margin-right: 1em;
+  color: white;
+}
+
+.app-bar h2 {
+  font-size: 2em;
+  margin: 0;
+  display: inline-block;
+  margin-right: 1em;
+  margin-top: 0px;
+  color: white;
+}
+
+.app-bar h3 {
+  font-size: 1em;
+  margin-top: 10px;
+  margin-bottom: 0%;
+  display: inline-block;
+  margin-right: 0px;
+  color: white;
 }
 
 .task-form {
-   
-
+  
   margin-right: 0px;
   margin-left: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 3px;
   margin-top: 15px;
 
 }
 
 .in-tarefa{
-  width: 90%;
-  height: 25px;
-  margin-right: 0.1%;
+  width: 75%;
+  height: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+}
 
-}
-.ts-btn{
-  min-width: auto;
-  height: auto;
-  color: #1d553f;
-  background-color: #dbd2d8;
-}
 
 .task-form > input {
   flex-grow: 1;
@@ -117,7 +138,8 @@ header {
   background: transparent;
   border: 1px solid #aaa;
   font-size: 1em;
-  margin-right: 15px;
+  margin-right: 0px;
+  margin-bottom: 0px;
 }
 
 
@@ -201,12 +223,14 @@ header {
   display: inline-block;
   margin-bottom: 0;
   margin-top: 2%;
+  color: white;
 }
 
 .login-form h3{
   margin: 20%;
   margin-top: 1%;
   margin-bottom: 5%;
+  color: white;
 }
 
 
@@ -226,8 +250,10 @@ header {
   font-family: serif;
   align-self: flex-end;
   cursor: pointer;
-  margin: 8px 16px 0;
+  margin: 4px 8px 0 0;
   font-weight: bold;
+  color: white;
+  font-size: medium;
 }
 
 
@@ -279,17 +305,20 @@ header {
   width: 190px;
 }
 .register-form h2{
-  font-size: 1.5em;
+  font-size: 2em;
   margin: 20%;
   display: inline-block;
   margin-bottom: 0;
   margin-top: 2%;
+  color: white;
 }
 
 .register-form h3{
   margin: 20%;
   margin-top: 1%;
   margin-bottom: 5%;
+  color: white;
+  
 }
 
 .opcoes{
@@ -301,7 +330,7 @@ header {
   width: 400px;
   border: 3px solid #8708ad;
   border-radius: 2%;
-  background-color: #ae68f0;
+  background-color: #552383cc;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -37,7 +37,7 @@ export const LoginForm = () => {
 
             <div>
                  
-                <label htmlFor="username">Nome de usuário</label>
+                <label htmlFor="username" color='white'>Nome de usuário</label>
                 <input
                     type="text"
                     placeholder='Nome de usuário'
@@ -48,7 +48,7 @@ export const LoginForm = () => {
             </div>
 
             <div>
-                <label htmlFor="password">Senha</label>
+                <label htmlFor="password" color='white'>Senha</label>
 
                 <input
                     type="password"

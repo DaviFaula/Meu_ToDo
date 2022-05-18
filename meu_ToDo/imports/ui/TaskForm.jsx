@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { TasksCollection } from '../api/TasksCollection';
-
+import IconButton from '@mui/material/IconButton';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import TextField from '@mui/material/TextField';
+import { Box } from '@mui/material';
 
 
 
@@ -23,17 +26,21 @@ export const TaskForm = ({ user }) => {
     };
 
     return (
-        <form  onSubmit={handleSubmit} className="task-form">
-            <div>
-                <input 
+        <form  onSubmit={handleSubmit} className="task-form" >
+            <Box display="flex" justifyContent="center" alignItems="center" sx={{marginBottom: 2}}>
+                < TextField  
+                    label="Nova tarefa" 
+                    variant="outlined" 
+                    sx={{ bgcolor:"rgba(187, 182, 182, 0.100)"}}
+
                     className='in-tarefa'
                     type="text"
                     placeholder="Digite sua nova tarefa!"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 />
-                <button className='ts-btn' type="submit">+</button>
-            </div>
+                <IconButton  type="submit"  size='small'  sx={{bgcolor: 'none',  boxShadow: 'none'}}><AddBoxIcon sx={{fontSize: 70, color: 'black'}}/></IconButton>
+            </Box>
             
         </form>
     );

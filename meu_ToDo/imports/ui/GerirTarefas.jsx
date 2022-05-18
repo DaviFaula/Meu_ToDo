@@ -9,60 +9,61 @@ import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from '@mui/material/Button';
 import { Stack } from '@mui/material';
+import { Box } from '@mui/material';
 
 
 
 function toggleChecked({ _id, isChecked }) {
-    TasksCollection.update(_id, {
-      $set: {
-        isChecked: !isChecked
-      }
-    });
-  }
-  
-  const deleteTask = ({ _id }) => TasksCollection.remove(_id);
+  TasksCollection.update(_id, {
+    $set: {
+      isChecked: !isChecked
+    }
+  });
+}
+
+const deleteTask = ({ _id }) => TasksCollection.remove(_id);
 
 
 export const GerirTarefas = () => {
-    const user = useTracker(() => Meteor.user());
-    const [hideCompleted, setHideCompleted] = useState(false);
-    const hideCompletedFilter = { isChecked: { $ne: true } };
-    const userFilter = user ? { userId: user._id } : {};
-    const pendingOnlyFilter = { ...hideCompletedFilter, ...userFilter };
-  
-  
-    const tasks = useTracker(() => {
-      if (!user) {
-        return [];
-      }
-  
-      return TasksCollection.find(
-        hideCompleted ? pendingOnlyFilter : {},
-        {
-          sort: { createdAt: -1 },
-        }
-      ).fetch();
-    });
-  
-    const pendingTasksCount = useTracker(() => {
-      if (!user) {
-        return 0;
-      }
-  
-      return TasksCollection.find(pendingOnlyFilter).count();
-    });
-  
-    const pendingTasksTitle = `${pendingTasksCount ? `(${pendingTasksCount})` : ''}`;
+  const user = useTracker(() => Meteor.user());
+  const [hideCompleted, setHideCompleted] = useState(false);
+  const hideCompletedFilter = { isChecked: { $ne: true } };
+  const userFilter = user ? { userId: user._id } : {};
+  const pendingOnlyFilter = { ...hideCompletedFilter, ...userFilter };
 
-  
-  
-  
-    // console.log(tasks);
-  
-    return (
-  
-      <div className='app'>
-  
+
+  const tasks = useTracker(() => {
+    if (!user) {
+      return [];
+    }
+
+    return TasksCollection.find(
+      hideCompleted ? pendingOnlyFilter : {},
+      {
+        sort: { createdAt: -1 },
+      }
+    ).fetch();
+  });
+
+  const pendingTasksCount = useTracker(() => {
+    if (!user) {
+      return 0;
+    }
+
+    return TasksCollection.find(pendingOnlyFilter).count();
+  });
+
+  const pendingTasksTitle = `${pendingTasksCount ? `(${pendingTasksCount})` : ''}`;
+
+
+
+
+  // console.log(tasks);
+
+  return (
+
+    <div className='app'>
+      <div className='main'>
         <header>
           <div className='app-bar'>
             <div className='app-header'>
@@ -74,39 +75,41 @@ export const GerirTarefas = () => {
             <h3>Gerir Tarefas</h3>
           </div>
         </header>
-  
-  
-  
-        <div className='main'>
-            <Fragment>
-              <nav className='user' >
-                 <Link to='/'>
-                   <IconButton size="small" color='success'>
-                      <HomeIcon/>
-                   </IconButton>
-                 </Link>
-              </nav>
-             
-              <TaskForm user={user} />
-              <Stack display ="flex"  justifyContent="center" alignItems="center"  margin={1}>
-                <Button  onClick={() => setHideCompleted(!hideCompleted)} variant="contained" color='info'>
-                  {hideCompleted ? 'Mostrar tarefas ' : 'Ocultar completas'}
-                </Button>
-              </Stack>
-              <ul className='tasks'>
-                {tasks.map(task => (
-  
-                  <Task
-                    key={task._id}
-                    task={task}
-                    onCheckboxClick={toggleChecked}
-                    onDeleteClick={deleteTask}
-                  />
-                ))}
-              </ul>
-            
-            </Fragment>
-        </div>
+
+
+
+
+        <Fragment>
+          <nav className='user' >
+            <Link to='/'>
+              <IconButton size="small" color='info' sx={{ bgcolor: 'none', boxShadow: 'none' }}>
+                <HomeIcon sx={{color:'white'}} />
+              </IconButton>
+            </Link>
+          </nav>
+          <Box sx={{overflow: 'auto', flexGrow: 1, bgcolor: 'antiquewhite',  maxWidth: 0.85, minWidth:0.45, marginLeft: 10, marginBottom:3, borderRadius: 5}}>
+            <TaskForm user={user} />
+            <Stack display="flex" justifyContent="center" alignItems="center" marginBottom={2} marginTop={0}>
+              <Button onClick={() => setHideCompleted(!hideCompleted)} variant="contained" color='info' >
+                {hideCompleted ? 'Mostrar tarefas ' : 'Ocultar completas'}
+              </Button>
+            </Stack >
+            <Stack marginBottom={3} sx={{overflow: 'auto',}}>
+            <ul className='tasks'>
+              {tasks.map(task => (
+
+                <Task
+                  key={task._id}
+                  task={task}
+                  onCheckboxClick={toggleChecked}
+                  onDeleteClick={deleteTask}
+                />
+              ))}
+            </ul>
+            </Stack>
+          </Box>
+        </Fragment>
       </div>
-    );
-  };
+    </div>
+  );
+};
