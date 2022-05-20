@@ -5,6 +5,9 @@ import { App } from '/imports/ui/App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RegisterForm } from '/imports/ui/RegisterForm';
 import {GerirTarefas} from '/imports/ui/GerirTarefas';
+import {Perfil} from'/imports/ui/Perfil';
+import {Editar} from'/imports/ui/Editar';
+
 
 Meteor.startup(() => {
   render(
@@ -14,9 +17,8 @@ Meteor.startup(() => {
         <Route path="/Entrar" element={<App />}></Route>
         <Route path="/Reg" element={<RegisterForm />} />
         <Route path="/Gerir" element={<GerirTarefas />}></Route>
-        <Route path="/Perfil" ></Route>
-
-
+        <Route path="/Editar" element={<Editar />}></Route>
+        <Route path="/Perfil" element={<Perfil />}></Route>
       </Routes>
     </BrowserRouter>
 

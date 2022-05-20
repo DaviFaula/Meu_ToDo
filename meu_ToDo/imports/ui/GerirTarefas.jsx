@@ -21,7 +21,7 @@ function toggleChecked({ _id, isChecked }) {
   });
 }
 
-const deleteTask = ({ _id }) => TasksCollection.remove(_id);
+function deleteTask(_id){TasksCollection.remove(_id)};
 
 
 export const GerirTarefas = () => {
@@ -29,9 +29,10 @@ export const GerirTarefas = () => {
   const [hideCompleted, setHideCompleted] = useState(false);
   const hideCompletedFilter = { isChecked: { $ne: true } };
   const userFilter = user ? { userId: user._id } : {};
-  const pendingOnlyFilter = { ...hideCompletedFilter, ...userFilter };
+  const pendingOnlyFilter = { ...hideCompletedFilter};
 
-
+  const verifyDelete =({userId,_id})=>{(user._id==userId)?deleteTask(_id):console.log('Usuário não autorizado')};
+ 
   const tasks = useTracker(() => {
     if (!user) {
       return [];
@@ -102,7 +103,8 @@ export const GerirTarefas = () => {
                   key={task._id}
                   task={task}
                   onCheckboxClick={toggleChecked}
-                  onDeleteClick={deleteTask}
+                  //onEditClick={}
+                  onDeleteClick={verifyDelete}
                 />
               ))}
             </ul>

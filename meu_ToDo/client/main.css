@@ -326,11 +326,10 @@ header {
   margin-top: 5%;
   margin-bottom: 5%;
 
-  height: 60%;
-  width: 400px;
-  border: 3px solid #8708ad;
+  height: 70%;
+  width: 65%;
   border-radius: 2%;
-  background-color: #552383cc;
+  background-color: antiquewhite;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -49,9 +49,11 @@ export const App = () => {
             </div>
             <Stack className='opcoes' direction="row" spacing={2}>
 
-              <Button className='btn_opcoes' variant="contained" endIcon={<AccountBox />}>
-                Meu Perfil
-              </Button>
+              <Link to='/Perfil' className='Link_rotas'>
+                <Button className='btn_opcoes' variant="contained" endIcon={<AccountBox />}>
+                  Meu Perfil
+                </Button>
+              </Link>
 
               <Link to='/Gerir' className='Link_rotas'>
                 <Button className='btn_opcoes' variant="contained">
@@ -66,8 +68,8 @@ export const App = () => {
       ) : (
 
         <Fragment>
-           
-           
+
+
           <LoginForm />
 
 

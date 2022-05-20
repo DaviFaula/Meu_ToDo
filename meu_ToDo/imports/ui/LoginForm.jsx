@@ -62,7 +62,7 @@ export const LoginForm = () => {
           <div className='btns_acesso'>
             <Stack direction="row" spacing={2}>
 
-              <Button className='Registro' variant="contained" type="submit" endIcon={<Fingerprint />}>Entrar</Button>
+              <Button className='Registro' variant="contained" type="submit"  endIcon={<Fingerprint />}>Entrar</Button>
               {
                 <Link to="/Reg" className='Link_rotas'>
                   <Button className='Registro' variant="contained" >Criar conta</Button>
