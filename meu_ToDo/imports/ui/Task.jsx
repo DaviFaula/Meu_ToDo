@@ -14,11 +14,11 @@ import ListSharpIcon from '@mui/icons-material/ListSharp';
 import EditIcon from '@mui/icons-material/Edit';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 
-export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
+export const Task = ({ task, onCheckboxClick, onDeleteClick, onEditClick }) => {
   const user = useTracker(() => Meteor.user());
   function verifyUser(userId){
      let ans;
@@ -42,7 +42,7 @@ export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
           <ListItemText primary={task.text} secondary={task.username} />
           <Stack direction="row" spacing={1}>
         
-          <IconButton component={Link} to={"/Editar"} sx={{bgcolor: 'rgba(178, 136, 127, 0.100)'}} color='info'  disabled={(verifyUser(task.userId))}><EditIcon/></IconButton>
+          <IconButton  component={Link} to={`/Editar/${task._id}` }  sx={{bgcolor: 'rgba(178, 136, 127, 0.100)'}} color='info'  disabled={(verifyUser(task.userId))} onClick={()=> onEditClick(task)}><EditIcon/></IconButton>
           
           <IconButton sx={{bgcolor: 'rgba(178, 136, 127, 0.100)'}} color='error'  disabled={(verifyUser(task.userId))} onClick={()=> onDeleteClick(task)}><DeleteIcon/></IconButton>
           </Stack>
