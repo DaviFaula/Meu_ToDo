@@ -16,17 +16,21 @@ import TextField from '@mui/material/TextField';
 
 
 export const Editar = () => {
-    const {id} = useParams();
-    const {task} = useTracker(() => {
-       const noData={task:{}};
-       if(!Meteor.user()){
-           return noData;
-           
-       } 
-       Meteor.subscribe('tasks')
-        const task = TasksCollection.findOne({_id:id}); 
+    const { id } = useParams();
+    const { task } = useTracker(() => {
+        const noData = { task: {} };
+        if (!Meteor.user()) {
+            return noData;
+        }
+        const handler = Meteor.subscribe('tasks')
+        if(handler.ready()){
+           return {...noData,isLoading:true};
+        }
 
-        return {task}
+        const task = TasksCollection.findOne({ _id: id });
+        return { task, 
+                 isLoading: !handler.ready() 
+                }
 
     });
     console.log(task._id)
@@ -40,10 +44,11 @@ export const Editar = () => {
 
 
 
-    
+
 
 
     return (
+
 
         <div className='main'>
             <div className='app'>
@@ -83,7 +88,7 @@ export const Editar = () => {
                             </Button>
                         </Stack >
                         <Stack marginBottom={3} sx={{ overflow: 'auto' }}>
-                            <TextField  defaultValue={task.text}/>
+                            <TextField defaultValue={task.text} />
                         </Stack>
                     </Box>
                 </Fragment>
