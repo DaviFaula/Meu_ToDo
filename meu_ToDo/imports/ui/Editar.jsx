@@ -9,6 +9,8 @@ import { Box } from '@mui/material';
 import { Stack } from '@mui/material';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import TextField from '@mui/material/TextField';
+import { getThemeProps } from '@mui/system';
+
 
 
 
@@ -17,23 +19,29 @@ import TextField from '@mui/material/TextField';
 
 export const Editar = () => {
     const { id } = useParams();
-    const { task } = useTracker(() => {
-        const noData = { task: {} };
+
+    const { task, isLoading } = useTracker(() => {
+        const noDataAvailable = { task: [] };
         if (!Meteor.user()) {
-            return noData;
+            return { noDataAvailable, isLoading: true };
         }
-        const handler = Meteor.subscribe('tasks')
-        if(handler.ready()){
-           return {...noData,isLoading:true};
+        const handler = Meteor.subscribe('tasks');
+
+        if (!handler.ready()) {
+            return { ...noDataAvailable, isLoading: true };
+        } else {
+
+            const task = TasksCollection.find(id).fetch();
+            return { task }
         }
-
-        const task = TasksCollection.findOne({ _id: id });
-        return { task, 
-                 isLoading: !handler.ready() 
-                }
-
     });
-    console.log(task._id)
+
+
+    console.log(task)
+
+
+
+
 
     const [isEdit, SetisEdit] = useState(false);
     function colorBtn(estado) {
@@ -47,7 +55,10 @@ export const Editar = () => {
 
 
 
+
+
     return (
+
 
 
         <div className='main'>
@@ -87,8 +98,13 @@ export const Editar = () => {
                                 {isEdit ? 'Salvar alterações' : 'Habilitar Edição'}
                             </Button>
                         </Stack >
-                        <Stack marginBottom={3} sx={{ overflow: 'auto' }}>
-                            <TextField defaultValue={task.text} />
+                        <Stack marginBottom={3} display="flex" sx={{ overflow: 'auto'}}>
+                            <TextField value={isLoading ? 'Carregando...' : task[0]['text']} variant="filled" disabled={(!isEdit)} helperText={'Título da tarefa'} sx={{ margin: 2, backgroundColor: "white" }} />
+                            <TextField value={isLoading ? 'Carregando...' : task[0]['text']} variant="filled" disabled={(!isEdit)} helperText={'Descrição da tarefa'} sx={{ margin: 2, backgroundColor: "white" }} />
+                            <Stack direction="row" spacing={2} marginLeft={2} display="flex">
+                                <TextField value={isLoading ? 'Carregando...' : task[0]['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{  backgroundColor: "white" }} />
+                                <TextField value={isLoading ? 'Carregando...' : task[0]['username']} variant="filled" disabled={(true)} helperText={'Criada por'} sx={{ backgroundColor: "white" }} />
+                            </Stack>
                         </Stack>
                     </Box>
                 </Fragment>
@@ -96,4 +112,5 @@ export const Editar = () => {
 
         </div>
     );
+
 };

@@ -16,12 +16,14 @@ export const TaskForm = ({ user }) => {
 
         if (!text) return;
 
-        TasksCollection.insert({
+        Meteor.call('tasks.insert',text,user);
+
+       /* TasksCollection.insert({
             text: text.trim(),
             createdAt: new Date(),
             userId: user._id,
             username: user.username
-        });
+        });*/
         setText("");
     };
 

@@ -14,11 +14,7 @@ import { Box } from '@mui/material';
 
 
 function toggleChecked({ _id, isChecked }) {
-  TasksCollection.update(_id, {
-    $set: {
-      isChecked: !isChecked
-    }
-  });
+  Meteor.call('tasks.setIsChecked', _id, !isChecked);
 }
 
 function deleteTask(_id){TasksCollection.remove(_id)};
@@ -31,7 +27,7 @@ export const GerirTarefas = () => {
   const userFilter = user ? { userId: user._id } : {};
   const pendingOnlyFilter = { ...hideCompletedFilter};
 
-  const verifyDelete =({userId,_id})=>{(user._id==userId)?deleteTask(_id):console.log('Usuário não autorizado')};
+  const verifyDelete =({userId,_id})=>{(user._id==userId)?Meteor.call('tasks.remove',_id):console.log('Usuário não autorizado')};
  
   const tasks = useTracker(() => {
     if (!user) {

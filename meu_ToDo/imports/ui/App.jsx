@@ -10,11 +10,6 @@ import { Navigate } from "react-router-dom";
 
 
 
-
-
-
-
-
 export const App = () => {
   const user = useTracker(() => Meteor.user());
   const logout = () => Meteor.logout();
