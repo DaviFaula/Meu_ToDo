@@ -9,6 +9,11 @@ import { Box } from '@mui/material';
 import { Stack } from '@mui/material';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 import { getThemeProps } from '@mui/system';
 
 
@@ -41,6 +46,19 @@ export const Editar = () => {
 
 
 
+    
+
+   
+
+    function SaveChange(t,d){
+        Meteor.call('tasks.Edit',id,t,d);
+    };
+
+    function SaveStatus(s){
+        Meteor.call('tasks.Status',id,s);
+    };
+
+
 
 
     const [isEdit, SetisEdit] = useState(false);
@@ -56,11 +74,9 @@ export const Editar = () => {
 
 
 
-
     return (
 
-
-
+       
         <div className='main'>
             <div className='app'>
                 <header>
@@ -93,17 +109,32 @@ export const Editar = () => {
                         marginTop: 1,
                         borderRadius: 5
                     }}>
-                        <Stack display="flex" justifyContent="center" alignItems="center" marginBottom={1} marginTop={1}>
+                        <Stack  direction="row" spacing={2} display="flex" justifyContent="center" alignItems="center" marginBottom={1} marginTop={1}>
                             <Button variant="contained" size='large' color={colorBtn(isEdit)} onClick={() => SetisEdit(!isEdit)}>
-                                {isEdit ? 'Salvar alterações' : 'Habilitar Edição'}
+                                {isEdit ? 'Desabilitar Edição' : 'Habilitar Edição'}
                             </Button>
+
+                            
                         </Stack >
-                        <Stack marginBottom={3} display="flex" sx={{ overflow: 'auto'}}>
-                            <TextField value={isLoading ? 'Carregando...' : task[0]['text']} variant="filled" disabled={(!isEdit)} helperText={'Título da tarefa'} sx={{ margin: 2, backgroundColor: "white" }} />
-                            <TextField value={isLoading ? 'Carregando...' : task[0]['text']} variant="filled" disabled={(!isEdit)} helperText={'Descrição da tarefa'} sx={{ margin: 2, backgroundColor: "white" }} />
-                            <Stack direction="row" spacing={2} marginLeft={2} display="flex">
-                                <TextField value={isLoading ? 'Carregando...' : task[0]['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{  backgroundColor: "white" }} />
-                                <TextField value={isLoading ? 'Carregando...' : task[0]['username']} variant="filled" disabled={(true)} helperText={'Criada por'} sx={{ backgroundColor: "white" }} />
+                        <Stack marginBottom={3} display="flex" sx={{ overflow: 'auto' }}>
+                            <TextField value={isLoading ? 'Carregando...' : task[0]['text']}  onChange={((e)=>{SaveChange(t=e.target.value, d=task[0]['description'], s= task[0]['status'])})} variant="filled" disabled={(!isEdit)} helperText={'Título da tarefa'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <TextField value={isLoading ? 'Carregando...' : task[0]['description']} onChange={(e)=>{SaveChange( t=task[0]['text'], d=e.target.value, s= task[0]['status'])}} variant="filled" disabled={(!isEdit)} helperText={'Descrição da tarefa'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <Stack  direction="row" spacing={2} marginLeft={2} display="flex">
+                                <TextField value={isLoading ? 'Carregando...' : task[0]['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
+                                <TextField value={isLoading ? 'Carregando...' : task[0]['username']} variant="filled" disabled={(true)} helperText={'Criada por'} sx={{ backgroundColor: "transparent" }} />
+                                <FormControl >
+                                    <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                                    <Select 
+                                        value={isLoading ? 'Carregando...' : task[0]['status']}
+                                        label="Status"
+                                        onChange={(e)=>{isLoading ? {} :SaveStatus(s=e.target.value)}}
+                                        disabled={(!isEdit)}
+                                    >
+                                        <MenuItem value={1}>Cadastrada</MenuItem>
+                                        <MenuItem value={2}>Em andamento</MenuItem>
+                                        <MenuItem value={3}>Concluída</MenuItem>
+                                    </Select>
+                                </FormControl>
                             </Stack>
                         </Stack>
                     </Box>

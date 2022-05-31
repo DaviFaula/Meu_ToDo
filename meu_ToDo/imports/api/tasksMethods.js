@@ -15,6 +15,8 @@ Meteor.methods({
       createdAt: new Date,
       userId: this.userId,
       username: user.username,
+      description: text,
+      status: 1,
     })
   },
 
@@ -27,6 +29,41 @@ Meteor.methods({
 
     TasksCollection.remove(taskId);
   },
+
+
+
+
+  'tasks.Edit'(taskId,newTitle,newDcp,newStatus){
+    check(newTitle, String);
+    check(newDcp, String);
+    if (!this.userId) {
+      throw new Meteor.Error('Not authorized.');
+    }
+    TasksCollection.update(taskId, {
+      $set: {
+        text: newTitle,
+        description: newDcp, 
+        status: newStatus,
+      }
+    });
+
+
+
+  },
+
+  'tasks.Status'(taskId,newStatus){
+
+    if (!this.userId) {
+      throw new Meteor.Error('Not authorized.');
+    }
+    TasksCollection.update(taskId, {
+      $set: {
+        status: newStatus
+      }
+    });
+  },
+
+
 
   'tasks.setIsChecked'(taskId, isChecked) {
     check(taskId, String);
