@@ -7,7 +7,7 @@ import { RegisterForm } from '/imports/ui/RegisterForm';
 import {GerirTarefas} from '/imports/ui/GerirTarefas';
 import {Perfil} from'/imports/ui/Perfil';
 import {Editar} from'/imports/ui/Editar';
-
+import {CriarTarefa} from'/imports/ui/CriarTarefa';
 
 Meteor.startup(() => {
   render(
@@ -19,6 +19,7 @@ Meteor.startup(() => {
         <Route path="/Gerir" element={<GerirTarefas />}></Route>
         <Route path="/Editar/:id" exact element={<Editar />}></Route>
         <Route path="/Perfil" element={<Perfil />}></Route>
+        <Route path="/CriarTarefa" element={<CriarTarefa />}></Route>
       </Routes>
     </BrowserRouter>
 

@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import { TasksCollection } from './TasksCollection';
  
 Meteor.methods({
-  'tasks.insert'(text, user) {
+  'tasks.insert'(text,dsc, user) {
     check(text, String);
 
     if (!this.userId) {
@@ -15,7 +15,7 @@ Meteor.methods({
       createdAt: new Date,
       userId: this.userId,
       username: user.username,
-      description: text,
+      description: dsc,
       status: 1,
     })
   },

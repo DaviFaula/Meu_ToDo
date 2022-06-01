@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 
 import { getThemeProps } from '@mui/system';
 
@@ -132,7 +132,7 @@ export const Editar = () => {
                                     >
                                         <MenuItem value={1}>Cadastrada</MenuItem>
                                         <MenuItem value={2}>Em andamento</MenuItem>
-                                        <MenuItem value={3}>Concluída</MenuItem>
+                                        <MenuItem value={3} >Concluída</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Stack>

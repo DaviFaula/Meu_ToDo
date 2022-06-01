@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
-
+import { Box } from '@mui/material';
 
 
 export const RegisterForm = () => {
@@ -32,70 +32,71 @@ export const RegisterForm = () => {
 
         <div className='app'>
             <div className='main'>
-            <header>
-                <div className='app-bar'>
-                    <div className='app-header'>
-                        <h1>
-                            Tarefas.com
-                        </h1>
+                <header>
+                    <div className='app-bar'>
+                        <div className='app-header'>
+                            <h1>
+                                Tarefas.com
+                            </h1>
+                        </div>
                     </div>
-                </div>
-            </header>
-            
-
-                <form onSubmit={registro} className="register-form">
+                </header>
+                <Box sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'rgba(100, 136, 110, 0.450)', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, marginBottom: 3, borderRadius: 5, marginTop: 2 }}>
 
 
-                    <h3>
-                        Crie sua conta!
-                    </h3>
+                    <form onSubmit={registro} className="register-form">
 
-                    <div>
 
-                        <label htmlFor="username">Nome de usuário</label>
-                        <input
-                            type="text"
-                            placeholder='Nome de usuário'
-                            name="username"
-                            required
-                            onChange={e => setUsername(e.target.value)}
-                        />
-                    </div>
+                        <h3>
+                            Crie sua conta!
+                        </h3>
 
-                    <div>
-                        <label htmlFor="password" color='white'>Crie sua senha</label>
+                        <div>
 
-                        <input
-                            type="password"
-                            placeholder="Senha"
-                            name="password"
-                            required
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                    </div>
+                            <label htmlFor="username">Nome de usuário</label>
+                            <input
+                                type="text"
+                                placeholder='Nome de usuário'
+                                name="username"
+                                required
+                                onChange={e => setUsername(e.target.value)}
+                            />
+                        </div>
 
-                    <div>
-                        <label htmlFor="email" color='white'>Coloque um email válido</label>
+                        <div>
+                            <label htmlFor="password" color='white'>Crie sua senha</label>
 
-                        <input
-                            type="email"
-                            placeholder="Digite seu email"
-                            name="email"
-                            required
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className='btns_acesso'>
-                        <Stack direction="row" spacing={2}>
+                            <input
+                                type="password"
+                                placeholder="Senha"
+                                name="password"
+                                required
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </div>
 
-                            <Button className='btn-Registrar' type="submit" variant="contained" endIcon={<SendIcon />}>Registrar</Button>
-                            <Link to="/" className='Link_rotas'>
-                                <Button className='btn-Logar' variant="contained">Tela de Login</Button>
-                            </Link>
-                        </Stack>
-                    </div>
-                </form>
+                        <div>
+                            <label htmlFor="email" color='white'>Coloque um email válido</label>
 
+                            <input
+                                type="email"
+                                placeholder="Digite seu email"
+                                name="email"
+                                required
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className='btns_acesso'>
+                            <Stack direction="row" spacing={2}>
+
+                                <Button className='btn-Registrar' type="submit" variant="contained" endIcon={<SendIcon />}>Registrar</Button>
+                                <Link to="/" className='Link_rotas'>
+                                    <Button className='btn-Logar' variant="contained">Tela de Login</Button>
+                                </Link>
+                            </Stack>
+                        </div>
+                    </form>
+                </Box>
             </div>
         </div>
 
