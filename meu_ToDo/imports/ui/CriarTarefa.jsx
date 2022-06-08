@@ -39,8 +39,8 @@ export const CriarTarefa = () => {
                             </IconButton>
                         </Link>
                     </nav>
-                    <Box sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'antiquewhite', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, marginBottom: 3, borderRadius: 5 }}>
-                        <Box sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'white', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, marginBottom: 2, borderRadius: 5, marginTop: 5}}>
+                    <Box sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'antiquewhite', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, borderRadius: 5 }}>
+                        <Box sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'white', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, borderRadius: 5, marginTop: 5}}>
                             <TaskForm user={user} />
                         </Box>
                     </Box>

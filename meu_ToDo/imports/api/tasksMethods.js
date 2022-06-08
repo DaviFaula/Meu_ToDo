@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import { TasksCollection } from './TasksCollection';
  
 Meteor.methods({
-  'tasks.insert'(text,dsc, user) {
+  'tasks.insert'(text,dsc, user, privcy) {
     check(text, String);
 
     if (!this.userId) {
@@ -17,6 +17,7 @@ Meteor.methods({
       username: user.username,
       description: dsc,
       status: 1,
+      privacy: privcy,
     })
   },
 
@@ -25,6 +26,11 @@ Meteor.methods({
 
     if (!this.userId) {
       throw new Meteor.Error('Not authorized.');
+    }
+    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+
+    if (!task) {
+      throw new Meteor.Error('Access denied.');
     }
 
     TasksCollection.remove(taskId);
@@ -38,6 +44,12 @@ Meteor.methods({
     check(newDcp, String);
     if (!this.userId) {
       throw new Meteor.Error('Not authorized.');
+    }
+
+    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+
+    if (!task) {
+      throw new Meteor.Error('Access denied.');
     }
     TasksCollection.update(taskId, {
       $set: {
@@ -63,6 +75,18 @@ Meteor.methods({
     });
   },
 
+
+  'tasks.Privacy'(taskId,newPvc){
+
+    if (!this.userId) {
+      throw new Meteor.Error('Not authorized.');
+    }
+    TasksCollection.update(taskId, {
+      $set: {
+        privacy: newPvc
+      }
+    });
+  },
 
 
   'tasks.setIsChecked'(taskId, isChecked) {

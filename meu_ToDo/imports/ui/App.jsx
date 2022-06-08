@@ -6,13 +6,38 @@ import { Link, Outlet } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import AccountBox from '@mui/icons-material/AccountBox';
 import Stack from '@mui/material/Stack';
-import { Navigate } from "react-router-dom";
+import { Box, ListItemButton } from '@mui/material';
+
+import { Drawer, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { HomeOutlined, InboxOutlined, ReceiptOutlined } from "@material-ui/icons";
 
 
+
+const data = [
+  { name: "Home", icon: <HomeOutlined />,goesTo:"/" },
+  { name: "Meu Perfil", icon: <AccountBox />, goesTo:"/Perfil" },
+  { name: "Minhas tarefas", icon: <InboxOutlined />, goesTo:"/Gerir"  },
+
+];
 
 export const App = () => {
   const user = useTracker(() => Meteor.user());
   const logout = () => Meteor.logout();
+
+  const [open, setOpen] = useState(false);
+
+  const getList = () => (
+    <div style={{ width: 250 }} onClick={() => setOpen(false)}>
+      {data.map((item, index) => (
+        
+        <ListItem button component={Link} to= {item['goesTo']} key={index}>
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.name} />
+        </ListItem>
+        
+      ))}
+    </div>
+  );
 
 
 
@@ -42,20 +67,16 @@ export const App = () => {
             <div className='user' onClick={logout} >
               <h3 className='user'>{user.username}|sair</h3>
             </div>
-            <Stack className='opcoes' direction="row" spacing={2}>
+            <Box className='opcoes' direction="Column">
+              <Stack className='opcoes' direction="row" spacing={2}>
+                <Button className='btn_opcoes' variant="contained" onClick={() => setOpen(true)} endIcon={<ReceiptOutlined/>}>Menu</Button>
+                <Drawer open={open} anchor={"left"} onClose={() => setOpen(false)}>
+                  {getList()}
+                </Drawer>
 
-              <Link to='/Perfil' className='Link_rotas'>
-                <Button className='btn_opcoes' variant="contained" endIcon={<AccountBox />}>
-                  Meu Perfil
-                </Button>
-              </Link>
 
-              <Link to='/Gerir' className='Link_rotas'>
-                <Button className='btn_opcoes' variant="contained">
-                  Gerir Tarefas
-                </Button>
-              </Link>
-            </Stack>
+              </Stack>
+            </Box>
             <Outlet />
           </Fragment>
         </div>

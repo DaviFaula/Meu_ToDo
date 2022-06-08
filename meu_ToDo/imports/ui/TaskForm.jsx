@@ -24,7 +24,7 @@ export const TaskForm = ({ user }) => {
 
         if (!text) return;
 
-        Meteor.call('tasks.insert', text,dsc, user);
+        Meteor.call('tasks.insert', text,dsc, user,tipo);
 
 
         setText("");
@@ -68,7 +68,7 @@ export const TaskForm = ({ user }) => {
                 <MenuItem value={2}>Pública</MenuItem>
               </Select>
             </FormControl>
-                       <Button  variant="contained" type="submit" size='large' marginBottom={4} sx={{ bgcolor: 'none', boxShadow: 'none' }} endIcon={<AddBoxIcon sx={{ fontSize: 60, color: 'white' }} />}>Criar Tarefa</Button>
+                       <Button  variant="contained" type="submit" size='large'  sx={{ bgcolor: 'none', boxShadow: 'none' }} endIcon={<AddBoxIcon sx={{ fontSize: 60, color: 'white' }} />}>Criar Tarefa</Button>
                 </Stack>
             </Box>
 

@@ -23,9 +23,12 @@ export const RegisterForm = () => {
             username: username,
             password: password,
             email: email,
+            birthDate: '',
+            ProfilePicture:'',
+            job:'',
+            sexo:''
         });
         //  }
-
 
     };
     return (

@@ -23,32 +23,35 @@ export const GerirTarefas = () => {
   const user = useTracker(() => Meteor.user());
   const [hideCompleted, setHideCompleted] = useState(false);
   const hideCompletedFilter = { isChecked: { $ne: true } };
-  const userFilter = user ? { userId: user._id } : {};
+  const userFilter = user ? {  privacy: 2 } : {};
   const pendingOnlyFilter = { ...hideCompletedFilter };
 
   const verifyDelete = ({ userId, _id }) => { (user._id == userId) ? Meteor.call('tasks.remove', _id) : console.log('Usuário não autorizado') };
 
-  const tasks = useTracker(() => {
-    if (!user) {
-      return [];
+
+
+  const { tasks, pendingTasksCount, isLoading } = useTracker(() => {
+    const noDataAvailable = { tasks: [], pendingTasksCount: 0 };
+    if (!Meteor.user()) {
+      return noDataAvailable;
+    }
+    const handler = Meteor.subscribe('tasks');
+
+    if (!handler.ready()) {
+      return { ...noDataAvailable, isLoading: true };
     }
 
-    return TasksCollection.find(
+
+    const tasks = TasksCollection.find(
       hideCompleted ? pendingOnlyFilter : {},
-      {
+      { 
         sort: { createdAt: -1 },
       }
     ).fetch();
+    const pendingTasksCount = TasksCollection.find(pendingOnlyFilter).count();
+
+    return { tasks, pendingTasksCount };
   });
-
-  const pendingTasksCount = useTracker(() => {
-    if (!user) {
-      return 0;
-    }
-
-    return TasksCollection.find(pendingOnlyFilter).count();
-  });
-
   const pendingTasksTitle = `${pendingTasksCount ? `(${pendingTasksCount})` : ''}`;
   // <TaskForm user={user} />
   return (
@@ -89,6 +92,9 @@ export const GerirTarefas = () => {
               <Button  variant="contained" onClick={() => setHideCompleted(!hideCompleted)} color='info' >
                 {hideCompleted ? 'Mostrar tarefas ocultas ' : 'Ocultar selecionadas'}
               </Button>
+
+              
+
             </Stack >
             <Stack marginBottom={3} sx={{ overflow: 'auto', }}>
               <ul className='tasks'>

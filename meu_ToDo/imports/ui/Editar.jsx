@@ -14,7 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import { getThemeProps } from '@mui/system';
 
 
 
@@ -42,7 +41,6 @@ export const Editar = () => {
     });
 
 
-    console.log(task)
 
 
 
@@ -58,7 +56,9 @@ export const Editar = () => {
         Meteor.call('tasks.Status',id,s);
     };
 
-
+    function SavePvc(p){
+        Meteor.call('tasks.Privacy',id,p);
+    };
 
 
     const [isEdit, SetisEdit] = useState(false);
@@ -122,7 +122,9 @@ export const Editar = () => {
                             <Stack  direction="row" spacing={2} marginLeft={2} display="flex">
                                 <TextField value={isLoading ? 'Carregando...' : task[0]['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
                                 <TextField value={isLoading ? 'Carregando...' : task[0]['username']} variant="filled" disabled={(true)} helperText={'Criada por'} sx={{ backgroundColor: "transparent" }} />
-                                <FormControl >
+                                                               <TextField value={isLoading ? 'Carregando...' : task[0]['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
+
+                                <FormControl>
                                     <InputLabel id="demo-simple-select-label">Status</InputLabel>
                                     <Select 
                                         value={isLoading ? 'Carregando...' : task[0]['status']}
@@ -133,6 +135,19 @@ export const Editar = () => {
                                         <MenuItem value={1}>Cadastrada</MenuItem>
                                         <MenuItem value={2}>Em andamento</MenuItem>
                                         <MenuItem value={3} >Concluída</MenuItem>
+                                    </Select>
+                                </FormControl>
+                                <FormControl >
+                                    <InputLabel >Privacidade</InputLabel>
+                                    <Select 
+                                        value={isLoading ? 'Carregando...' : task[0]['privacy']}
+                                        label="Privacidade"
+                                        onChange={(e)=>{isLoading ? {} :SavePvc(p=e.target.value)}}
+                                        disabled={(!isEdit)}
+                                    >
+                                        <MenuItem value={1}>Privada</MenuItem>
+                                        <MenuItem value={2}>Pública</MenuItem>
+
                                     </Select>
                                 </FormControl>
                             </Stack>

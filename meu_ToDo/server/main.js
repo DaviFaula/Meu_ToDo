@@ -3,6 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import '/imports/api/tasksMethods';
 import '/imports/api/tasksPublications';
+import '/imports/api/usersPublications';
 
 const insertTask = (taskText, user) =>
   TasksCollection.insert({
@@ -13,6 +14,7 @@ const insertTask = (taskText, user) =>
 
 const SEED_USERNAME = 'davifaula';
 const SEED_PASSWORD = '12345678';
+const SEED_EMAIL = 'teste@gmail.com';
 
 
 Meteor.startup(() => {
@@ -20,6 +22,7 @@ Meteor.startup(() => {
     Accounts.createUser({
       username: SEED_USERNAME,
       password: SEED_PASSWORD,
+      email: SEED_EMAIL,
     });
   }
 
