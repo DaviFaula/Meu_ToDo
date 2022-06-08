@@ -67,14 +67,18 @@ export const App = () => {
             <div className='user' onClick={logout} >
               <h3 className='user'>{user.username}|sair</h3>
             </div>
-            <Box className='opcoes' direction="Column">
-              <Stack className='opcoes' direction="row" spacing={2}>
+            <Box className='opcoes'>
+              <Stack className='opcoes' direction="column" spacing={2} >
                 <Button className='btn_opcoes' variant="contained" onClick={() => setOpen(true)} endIcon={<ReceiptOutlined/>}>Menu</Button>
                 <Drawer open={open} anchor={"left"} onClose={() => setOpen(false)}>
                   {getList()}
                 </Drawer>
-
-
+                <Button className='btn_opcoes' variant="contained" endIcon={<ReceiptOutlined/>}>AÇÃO 2</Button>
+              
+              </Stack>
+              <Stack className='opcoes' direction="column" spacing={2}>
+                <Button className='btn_opcoes' variant="contained" endIcon={<ReceiptOutlined/>}>AÇÃO 3</Button>
+                <Button className='btn_opcoes' variant="contained" endIcon={<ReceiptOutlined/>}>AÇÃO 4</Button>
               </Stack>
             </Box>
             <Outlet />

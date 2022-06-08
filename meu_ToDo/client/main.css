@@ -327,7 +327,7 @@ header {
   margin-bottom: 5%;
 
   height: 70%;
-  width: 65%;
+  width: 50em;
   border-radius: 2%;
   background-color: antiquewhite;
   display: flex;
@@ -336,11 +336,11 @@ header {
 }
 
 .btn_opcoes{
-  height: 75px;
+  height: 11em;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 13em;
 }
 
 .btns_acesso{

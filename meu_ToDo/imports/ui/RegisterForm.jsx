@@ -12,6 +12,10 @@ export const RegisterForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const birthDate= {_id:'birthDate', type :'date', value :''}
+    const ProfilePicture= {_id:'Profile-Picture', type :'.jpeg, .png, .jpg"', value :''}
+    const job= {_id:'job', type :'text', value :''}
+    const sexo= {_id:'sexo', type :'number', value :''}
 
     const registro = e => {
 
@@ -19,15 +23,19 @@ export const RegisterForm = () => {
 
         //    if (!Accounts.findUserByUsername(username)) {
 
+        
+
         Accounts.createUser({
             username: username,
             password: password,
             email: email,
-            birthDate: '',
-            ProfilePicture:'',
-            job:'',
-            sexo:''
+            birthDate: birthDate,
+            ProfilePicture:ProfilePicture,
+            job:job,
+            sexo:sexo
         });
+
+ 
         //  }
 
     };

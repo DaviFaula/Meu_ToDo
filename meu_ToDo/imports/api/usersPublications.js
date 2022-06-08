@@ -1,10 +1,9 @@
-Meteor.publish('users',  function ({ userIds }) {
+
+
+Meteor.publish('users', function publishUsers(userId) {
     // Validate the arguments to be what we expect
 
-    // Select only the users that match the array of IDs passed in
-    const selector = {
-      _id: { $in: userIds }
-    };
+    const selector =  userId;
   
   
     const options = {
@@ -18,5 +17,5 @@ Meteor.publish('users',  function ({ userIds }) {
                 }
     };
   
-    return Meteor.users.find(selector);
+    return Meteor.users.find({_id : selector},options);
   });

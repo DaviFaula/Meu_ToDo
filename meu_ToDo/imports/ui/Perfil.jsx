@@ -30,7 +30,7 @@ export const Perfil = () => {
         if (!Meteor.user()) {
             return { noDataAvailable, isLoading: true };
         }
-        const handler = Meteor.subscribe('users', user._id);
+        const handler = Meteor.subscribe('users',user._id);
 
         if (!handler.ready()) {
             return { ...noDataAvailable, isLoading: true };
@@ -57,7 +57,7 @@ export const Perfil = () => {
     function setEmail(newEmail) {
         Meteor.users.update(user._id, {
             $set: {
-                email: newEmail
+                email: {newEmail}
             }
         });
     }
