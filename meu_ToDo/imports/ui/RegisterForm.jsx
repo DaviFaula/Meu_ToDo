@@ -11,28 +11,26 @@ import { Box } from '@mui/material';
 export const RegisterForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const birthDate= {_id:'birthDate', type :'date', value :''}
-    const ProfilePicture= {_id:'Profile-Picture', type :'.jpeg, .png, .jpg"', value :''}
-    const job= {_id:'job', type :'text', value :''}
-    const sexo= {_id:'sexo', type :'number', value :''}
+
 
     const registro = e => {
 
         e.preventDefault();
 
         //    if (!Accounts.findUserByUsername(username)) {
-
+        setProfile ={
+           job:'none',
+           birthDate: '2022-01-01',
+           sexo:3,
+           email: 'none',
+           ProfilePicture:'none',
+        }
         
 
         Accounts.createUser({
             username: username,
             password: password,
-            email: email,
-            birthDate: birthDate,
-            ProfilePicture:ProfilePicture,
-            job:job,
-            sexo:sexo
+            profile:  setProfile
         });
 
  
@@ -86,17 +84,6 @@ export const RegisterForm = () => {
                             />
                         </div>
 
-                        <div>
-                            <label htmlFor="email" color='white'>Coloque um email válido</label>
-
-                            <input
-                                type="email"
-                                placeholder="Digite seu email"
-                                name="email"
-                                required
-                                onChange={e => setEmail(e.target.value)}
-                            />
-                        </div>
                         <div className='btns_acesso'>
                             <Stack direction="row" spacing={2}>
 

@@ -41,34 +41,54 @@ export const Perfil = () => {
     });
 
     console.log(userData)
+    console.log(isLoading ? 'isloading' :userData['profile']['email'])
+
 
     const [isEdit, SetisEdit] = useState(false);
+
+   //  const [job, SetJob] = useState('none');
+   // const [bday, SetBday] = useState('2022-01-01');
+   // const [gender, SetGender] = useState(3);
+   // const [email, SetEmail] = useState('none');
+
+   // function carregaDados(){
+    //    SetJob('deu certooo');
+    //    SetBday();
+    //    SetGender();
+    //    SetEmail();
+   // }
+
+
+    
     function colorBtn(estado) {
         let ans;
         (estado) ? ans = 'error' : ans = 'info';
         return ans;
     }
 
-    const values = {
-        someDate: "2022-01-01"
-      };
 
 
-    function setEmail(newEmail) {
+
+
+
+    function setFields(newJob,newBirthDate,newGender,NewEmail) {
+
+        const newData = {
+                job:newJob,
+                birthDate: newBirthDate,
+                sexo:newGender,
+                email: NewEmail,
+          };
+          
         Meteor.users.update(user._id, {
-            $set: {
-                email: {newEmail}
+            $set: { profile: newData
             }
         });
     }
 
-    function setJob(NewJob) {
-        Meteor.users.update(user._id, {
-            $set: {
-                job: NewJob
-            }
-        });
-    }
+
+
+
     onChange = (e) => {
         console.log('file to load', e.target.file[0])
         let file = e.target.file[0];
@@ -77,7 +97,6 @@ export const Perfil = () => {
             reader.onload = this._handleReaderLoaded.bind(this)
             reader.readAsBinaryString(file)
         }
-
     }
 
     _handleReaderLoaded = (readerEvt) => {
@@ -110,11 +129,11 @@ export const Perfil = () => {
     }
 
 
+
     return (
-
-
-
-        <div className='main'>
+      
+        <div className='main' >
+           
             <div className='app'>
                 <header>
                     <div className='app-bar'>
@@ -146,16 +165,16 @@ export const Perfil = () => {
                         borderRadius: 5
                     }}>
                         <Stack direction="row" spacing={2} display="flex" justifyContent="center" alignItems="center" marginBottom={1} marginTop={1}>
-                            <Button variant="contained" size='large' color={colorBtn(isEdit)} onClick={() => SetisEdit(!isEdit)}>
+                            <Button variant="contained" size='large' color={colorBtn(isEdit)} onClick={() => SetisEdit(!isEdit)} >
                                 {isEdit ? 'Desabilitar Edição' : 'Habilitar Edição'}
                             </Button>
-
+                        
 
                         </Stack >
                         <Stack marginBottom={3} display="flex" sx={{ overflow: 'auto' }}>
-                            <TextField value={isLoading ? 'Carregando...' : 'aa'} disabled={(true)} variant="filled" helperText={'Username'} sx={{ margin: 2, backgroundColor: "transparent" }} />
-                            <TextField value={isLoading ? 'Carregando...' : 'aa'} onChange={(e) => { setEmail(e.target.value) }} disabled={(!isEdit)} variant="filled" helperText={'Email'} sx={{ margin: 2, backgroundColor: "transparent" }} />
-                            <TextField value={isLoading ? 'Carregando...' : "vazio"} disabled={(!isEdit)} onChange={(e) => { setJob(e.target.value) }} variant="filled" helperText={'Empresa de trabalho'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <TextField value={isLoading ? 'Carregando...' : userData['username']} disabled={(true)} variant="filled" helperText={'Username'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <TextField value={isLoading ? 'Carregando...' : userData['profile']['email']} onChange={(e) => { setFields( userData['profile']['job'], userData['profile']['birthDate'], userData['profile']['sexo'],NewEmail=e.target.value) }} disabled={(!isEdit)} variant="filled" helperText={'Email'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <TextField value={isLoading ? 'Carregando...' : userData['profile']['job']} disabled={(!isEdit)} onChange={(e) => {setFields(newJob=e.target.value, userData['profile']['birthDate'], userData['profile']['sexo'], userData['profile']['email']) }} variant="filled" helperText={'Empresa de trabalho'} sx={{ margin: 2, backgroundColor: "transparent" }} />
                             <Stack direction="row" spacing={2} marginLeft={2} display="flex">
                             </Stack>
                         </Stack>
@@ -163,10 +182,10 @@ export const Perfil = () => {
                             <FormControl >
                                 <InputLabel >Sexo</InputLabel>
                                 <Select
-                                    value={1}
-                                    label="Sexo"
+                                    value={isLoading ? 3 : userData['profile']['sexo']}
+                                    label="Gênero"
                                     disabled={(!isEdit)}
-                                // onChange={(e) => { setTipo(e.target.value) }}
+                                    onChange={(e) => { setFields(userData['profile']['job'],userData['profile']['birthDate'],newGender =e.target.value, userData['profile']['email'])}}
                                 >
                                     <MenuItem value={1}>Masculino</MenuItem>
                                     <MenuItem value={2}>Feminino</MenuItem>
@@ -179,7 +198,8 @@ export const Perfil = () => {
                                 label="Data de nascimento"
                                 InputLabelProps={{ shrink: true, required: true }}
                                 type="date"
-                                defaultValue={values.someDate}
+                                value={isLoading ? '2020-01-01' :userData['profile']['birthDate']}
+                                onChange={(e) => { setFields( userData['profile']['job'],newBirthDate =e.target.value, userData['profile']['sexo'], userData['profile']['email'])}}
                                 disabled = {(!isEdit)}
                             />
 

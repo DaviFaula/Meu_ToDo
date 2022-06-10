@@ -52,6 +52,8 @@ export const GerirTarefas = () => {
 
     return { tasks, pendingTasksCount };
   });
+
+  
   const pendingTasksTitle = `${pendingTasksCount ? `(${pendingTasksCount})` : ''}`;
   // <TaskForm user={user} />
   return (
