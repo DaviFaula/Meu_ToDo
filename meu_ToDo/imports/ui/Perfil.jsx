@@ -8,7 +8,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 import { Stack } from '@mui/material';
-import { TasksCollection } from '/imports/api/TasksCollection';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
