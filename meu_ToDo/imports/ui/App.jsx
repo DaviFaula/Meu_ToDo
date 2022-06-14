@@ -8,6 +8,9 @@ import AccountBox from '@mui/icons-material/AccountBox';
 import Stack from '@mui/material/Stack';
 import { Box, ListItemButton } from '@mui/material';
 
+import { TasksCollection } from '/imports/api/TasksCollection';
+
+
 import { Drawer, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { HomeOutlined, InboxOutlined, ReceiptOutlined } from "@material-ui/icons";
 
@@ -45,13 +48,15 @@ export const App = () => {
 
 
 
-
+  const TasksCount = TasksCollection.find().count();
+  const completeTasksCount = TasksCollection.find({status: 3}).count();
+  const goingTasksCount = TasksCollection.find({status: 2}).count();
+  const notBeginTasksCount = TasksCollection.find({status: 1}).count();
+  const notCompleteTasksCount = goingTasksCount + notBeginTasksCount;
 
   // console.log(tasks);
 
   return (
-
-
 
     <div className='main'>
       {user ? (
@@ -83,7 +88,7 @@ export const App = () => {
                       Tarefas concluídas
                     </Typography>
                     <Typography display="flex" justifyContent="center" alignItems="center" sx={{ fontSize: 25 }}  fontWeight='50' color= "white" variant='caption' gutterBottom>
-                        XX
+                        {completeTasksCount}
                     </Typography>
                   </CardContent>
                   <CardActions >
@@ -95,13 +100,14 @@ export const App = () => {
               <Card className='card_opcoes' style={{backgroundColor: "rgba(205, 195, 5, 1)"}}>
                   <CardContent>
                     <Typography display="flex" justifyContent="center" alignItems="center" sx={{ fontSize: 17 }} ml={4.4} fontWeight='bold' color= "white" variant='h6' gutterBottom>
-                      Tarefas em andamento
+                      Tarefas registradas 
                     </Typography>
                     <Typography display="flex" justifyContent="center" alignItems="center" sx={{ fontSize: 25 }}  fontWeight='50' color= "white" variant='caption' gutterBottom>
-                        XX
+                        {TasksCount}
                     </Typography>
                   </CardContent>
                   <CardActions >
+                    
                   </CardActions>
                 </Card>
 
@@ -111,7 +117,7 @@ export const App = () => {
                       Tarefas Pendentes
                     </Typography>
                     <Typography display="flex" justifyContent="center" alignItems="center" sx={{ fontSize: 25 }}  fontWeight='50' color= "white" variant='caption' gutterBottom>
-                        XX
+                     {notCompleteTasksCount}
                     </Typography>
                   </CardContent>
                   <CardActions >

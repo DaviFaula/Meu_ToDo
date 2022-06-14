@@ -89,12 +89,14 @@ export const Perfil = () => {
 
 
     onChange = (e) => {
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         console.log('file to load', e.target.file[0])
         let file = e.target.file[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = this._handleReaderLoaded.bind(this)
             reader.readAsBinaryString(file)
+            
         }
     }
 

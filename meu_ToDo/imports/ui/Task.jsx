@@ -79,4 +79,3 @@ export const Task = ({ task, onCheckboxClick, onDeleteClick, onEditClick }) => {
   );
 
 }
-//"&times;" Faz ostrar o simbolo "x"

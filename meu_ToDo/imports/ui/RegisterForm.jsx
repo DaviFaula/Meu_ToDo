@@ -89,7 +89,7 @@ export const RegisterForm = () => {
 
                                 <Button className='btn-Registrar' type="submit" variant="contained" endIcon={<SendIcon />}>Registrar</Button>
                                 <Link to="/" className='Link_rotas'>
-                                    <Button className='btn-Logar' variant="contained">Tela de Login</Button>
+                                    <Button className='btn-Logar' variant="contained">Login</Button>
                                 </Link>
                             </Stack>
                         </div>

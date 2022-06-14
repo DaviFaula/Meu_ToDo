@@ -336,11 +336,11 @@ header {
 }
 
 .btn_opcoes{
-  height: 11em;
+  height: 13em;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 13em;
+  width: 13.5em;
 }
 
 .card_opcoes{
