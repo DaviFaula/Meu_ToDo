@@ -89,7 +89,6 @@ export const Perfil = () => {
 
 
     onChange = (e) => {
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         console.log('file to load', e.target.file[0])
         let file = e.target.file[0];
         if (file) {

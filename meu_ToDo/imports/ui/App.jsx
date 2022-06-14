@@ -20,6 +20,10 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 
+
+
+
+
 const data = [
   { name: "Home", icon: <HomeOutlined />, goesTo: "/" },
   { name: "Meu Perfil", icon: <AccountBox />, goesTo: "/Perfil" },
@@ -28,6 +32,25 @@ const data = [
 ];
 
 export const App = () => {
+
+  const { tasks, TasksCount, isLoading } = useTracker(() => {
+    const noDataAvailable = { tasks: [], pendingTasksCount: 0 };
+    if (!Meteor.user()) {
+      return noDataAvailable;
+    }
+    const handler = Meteor.subscribe('tasks');
+  
+    if (!handler.ready()) {
+      return { ...noDataAvailable, isLoading: true };
+    }
+  
+  
+    const tasks = TasksCollection.find().fetch();
+    const TasksCount = TasksCollection.find().count();
+  
+    return { tasks, TasksCount };
+  });
+
   const user = useTracker(() => Meteor.user());
   const logout = () => Meteor.logout();
 
@@ -48,7 +71,6 @@ export const App = () => {
 
 
 
-  const TasksCount = TasksCollection.find().count();
   const completeTasksCount = TasksCollection.find({status: 3}).count();
   const goingTasksCount = TasksCollection.find({status: 2}).count();
   const notBeginTasksCount = TasksCollection.find({status: 1}).count();
@@ -107,7 +129,9 @@ export const App = () => {
                     </Typography>
                   </CardContent>
                   <CardActions >
-                    
+                    <Link to = "/Gerir" className='Link_rotas'>
+                        {'   > Ir para tarefas'}
+                    </Link>
                   </CardActions>
                 </Card>
 
