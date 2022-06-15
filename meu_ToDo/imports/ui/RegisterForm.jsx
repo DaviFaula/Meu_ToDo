@@ -23,14 +23,18 @@ export const RegisterForm = () => {
            birthDate: '2022-01-01',
            sexo:3,
            email: 'none',
-           ProfilePicture:'none',
+           profilePicture:'none',
+           
         }
+
+    
         
 
         Accounts.createUser({
             username: username,
             password: password,
-            profile:  setProfile
+            profile:  setProfile,
+  
         });
 
  

@@ -22,14 +22,16 @@ import Select from '@mui/material/Select';
 
 export const Perfil = () => {
 
+
     const user = useTracker(() => Meteor.user());
+    const [imageUploaded, setImageUploaded] = useState('');
 
     const { userData, isLoading } = useTracker(() => {
         const noDataAvailable = { userData: [] };
         if (!Meteor.user()) {
             return { noDataAvailable, isLoading: true };
         }
-        const handler = Meteor.subscribe('users',user._id);
+        const handler = Meteor.subscribe('users', user._id);
 
         if (!handler.ready()) {
             return { ...noDataAvailable, isLoading: true };
@@ -40,25 +42,25 @@ export const Perfil = () => {
     });
 
     console.log(userData)
-    console.log(isLoading ? 'isloading' :userData['profile']['email'])
+    console.log(isLoading ? 'isloading' : userData['profile']['email'])
 
 
     const [isEdit, SetisEdit] = useState(false);
 
-   //  const [job, SetJob] = useState('none');
-   // const [bday, SetBday] = useState('2022-01-01');
-   // const [gender, SetGender] = useState(3);
-   // const [email, SetEmail] = useState('none');
+    //  const [job, SetJob] = useState('none');
+    // const [bday, SetBday] = useState('2022-01-01');
+    // const [gender, SetGender] = useState(3);
+    // const [email, SetEmail] = useState('none');
 
-   // function carregaDados(){
+    // function carregaDados(){
     //    SetJob('deu certooo');
     //    SetBday();
     //    SetGender();
     //    SetEmail();
-   // }
+    // }
 
 
-    
+
     function colorBtn(estado) {
         let ans;
         (estado) ? ans = 'error' : ans = 'info';
@@ -70,70 +72,58 @@ export const Perfil = () => {
 
 
 
-    function setFields(newJob,newBirthDate,newGender,NewEmail) {
+    function setFields(newJob, newBirthDate, newGender, NewEmail, newPic) {
 
         const newData = {
-                job:newJob,
-                birthDate: newBirthDate,
-                sexo:newGender,
-                email: NewEmail,
-          };
-          
+            job: newJob,
+            birthDate: newBirthDate,
+            sexo: newGender,
+            email: NewEmail,
+            profilePicture:newPic,
+        };
+
         Meteor.users.update(user._id, {
-            $set: { profile: newData
+            $set: {
+                profile: newData
             }
         });
     }
 
 
+  
+    
 
 
-    onChange = (e) => {
-        console.log('file to load', e.target.file[0])
-        let file = e.target.file[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = this._handleReaderLoaded.bind(this)
-            reader.readAsBinaryString(file)
-            
+
+
+
+
+    const uploadImage = async (e) => {
+
+        const file = e.target.files[0];
+        const base64 = await convertBase64(file);
+        setImageUploaded(base64);
+    }
+
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = (() => {
+                resolve(fileReader.result);
+            });
+            fileReader.onerror = ((error) => {
+                reject(error);
+            })
         }
+        )
     }
-
-    _handleReaderLoaded = (readerEvt) => {
-        let binaryString = readerEvt.target.result
-        this.SetState({
-            base64TextString: btoa(binaryString)
-        })
-
-    }
-
-    onFileSubmit = (e) => {
-        e.preventDefault()
-        const preview = document.getElementById('profile-picture')
-        console.log('bynary string', this.state.base64TextString)
-
-        let payload = { image: this.state.base64TextString }
-        fetch(`http://localhost:3000/Perfil`, {
-            method: "PATCH",
-            HEADERS: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-
-        })
-
-            .then(resp => resp.json())
-            .then(json => console.log(json))
-        preview.scroll = "data:image/png;base64," + this.state.base64TextString
-    }
-
 
 
     return (
-      
+
         <div className='main' >
-           
+
             <div className='app'>
                 <header>
                     <div className='app-bar'>
@@ -168,13 +158,27 @@ export const Perfil = () => {
                             <Button variant="contained" size='large' color={colorBtn(isEdit)} onClick={() => SetisEdit(!isEdit)} >
                                 {isEdit ? 'Desabilitar Edição' : 'Habilitar Edição'}
                             </Button>
-                        
+
 
                         </Stack >
                         <Stack marginBottom={3} display="flex" sx={{ overflow: 'auto' }}>
                             <TextField value={isLoading ? 'Carregando...' : userData['username']} disabled={(true)} variant="filled" helperText={'Username'} sx={{ margin: 2, backgroundColor: "transparent" }} />
-                            <TextField value={isLoading ? 'Carregando...' : userData['profile']['email']} onChange={(e) => { setFields( userData['profile']['job'], userData['profile']['birthDate'], userData['profile']['sexo'],NewEmail=e.target.value) }} disabled={(!isEdit)} variant="filled" helperText={'Email'} sx={{ margin: 2, backgroundColor: "transparent" }} />
-                            <TextField value={isLoading ? 'Carregando...' : userData['profile']['job']} disabled={(!isEdit)} onChange={(e) => {setFields(newJob=e.target.value, userData['profile']['birthDate'], userData['profile']['sexo'], userData['profile']['email']) }} variant="filled" helperText={'Empresa de trabalho'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <TextField value={isLoading ? 'Carregando...' : userData['profile']['email']}
+                                       onChange={(e) => { setFields(userData['profile']['job'], 
+                                                                    userData['profile']['birthDate'],
+                                                                    userData['profile']['sexo'], 
+                                                                    NewEmail = e.target.value,
+                                                                    userData['profile']['profilePicture']
+                                                                   ) }}
+                                       disabled={(!isEdit)} variant="filled" helperText={'Email'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <TextField value={isLoading ? 'Carregando...' : userData['profile']['job']} disabled={(!isEdit)} 
+                                       onChange={(e) => { setFields(newJob = e.target.value,
+                                                                    userData['profile']['birthDate'], 
+                                                                    userData['profile']['sexo'],
+                                                                    userData['profile']['email'], 
+                                                                    userData['profile']['profilePicture']
+                                                                   ) }}
+                                       variant="filled" helperText={'Empresa de trabalho'} sx={{ margin: 2, backgroundColor: "transparent" }} />
                             <Stack direction="row" spacing={2} marginLeft={2} display="flex">
                             </Stack>
                         </Stack>
@@ -185,7 +189,12 @@ export const Perfil = () => {
                                     value={isLoading ? 3 : userData['profile']['sexo']}
                                     label="Gênero"
                                     disabled={(!isEdit)}
-                                    onChange={(e) => { setFields(userData['profile']['job'],userData['profile']['birthDate'],newGender =e.target.value, userData['profile']['email'])}}
+                                    onChange={(e) => { setFields(userData['profile']['job'],
+                                                                 userData['profile']['birthDate'],
+                                                                 newGender = e.target.value,
+                                                                 userData['profile']['email'],
+                                                                 userData['profile']['profilePicture']
+                                                                ) }}
                                 >
                                     <MenuItem value={1}>Masculino</MenuItem>
                                     <MenuItem value={2}>Feminino</MenuItem>
@@ -198,20 +207,37 @@ export const Perfil = () => {
                                 label="Data de nascimento"
                                 InputLabelProps={{ shrink: true, required: true }}
                                 type="date"
-                                value={isLoading ? '2020-01-01' :userData['profile']['birthDate']}
-                                onChange={(e) => { setFields( userData['profile']['job'],newBirthDate =e.target.value, userData['profile']['sexo'], userData['profile']['email'])}}
-                                disabled = {(!isEdit)}
+                                value={isLoading ? '2020-01-01' : userData['profile']['birthDate']}
+                                onChange={(e) => { setFields(userData['profile']['job'],
+                                                            newBirthDate = e.target.value, 
+                                                            userData['profile']['sexo'],
+                                                            userData['profile']['email'],
+                                                            userData['profile']['profilePicture']
+                                                           ) }}
+                                disabled={(!isEdit)}
                             />
 
-                            <form onSubmit={(e) => this.onFileSubmit(e)} onChange={(e) => this.onChange(e)}>
+                            <div  >
                                 <input
                                     type="file"
                                     name="image"
                                     id="file"
                                     accept=".jpeg, .png, .jpg"
+                                    onChange={(e) => uploadImage(e)}
+                                    disabled={(!isEdit)}
                                 />
-                                <input type="submit" />
-                            </form>
+                                <input type="submit"
+                                    onClick={() => { setFields( userData['profile']['job'],
+                                                                userData['profile']['birthDate'], 
+                                                                userData['profile']['sexo'],
+                                                                userData['profile']['email'],
+                                                                newPic = imageUploaded
+                                   ) }}
+                                    disabled={(!isEdit)}
+                                />
+                                <br></br>
+                                <img src={imageUploaded} height='40em' />
+                            </div>
                         </Stack>
                     </Box>
                 </Fragment>
