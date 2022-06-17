@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import { Box } from '@mui/material';
+import TextField from '@mui/material/TextField';
 
 
 export const RegisterForm = () => {
@@ -18,26 +19,26 @@ export const RegisterForm = () => {
         e.preventDefault();
 
         //    if (!Accounts.findUserByUsername(username)) {
-        setProfile ={
-           job:'none',
-           birthDate: '2022-01-01',
-           sexo:3,
-           email: 'none',
-           profilePicture:'none',
-           
+        setProfile = {
+            job: 'none',
+            birthDate: '2022-01-01',
+            sexo: 3,
+            email: 'none',
+            profilePicture: 'none',
+
         }
 
-    
-        
+
+
 
         Accounts.createUser({
             username: username,
             password: password,
-            profile:  setProfile,
-  
+            profile: setProfile,
+
         });
 
- 
+
         //  }
 
     };
@@ -51,52 +52,51 @@ export const RegisterForm = () => {
                             <h1>
                                 Tarefas.com
                             </h1>
+                           
                         </div>
+                        <br></br>
                     </div>
                 </header>
-                <Box sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'rgba(100, 136, 110, 0.450)', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, marginBottom: 3, borderRadius: 5, marginTop: 2 }}>
+                <Box display="flex" justifyContent="center" alignItems="center" sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'rgba(100, 136, 110, 0.450)', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, marginBottom: 3, borderRadius: 5, marginTop: 2 }}>
 
-
-                    <form onSubmit={registro} className="register-form">
-
-
-                        <h3>
+                    <form onSubmit={registro} className='register-form' >
+                        <h3 >
                             Crie sua conta!
                         </h3>
-
-                        <div>
-
-                            <label htmlFor="username">Nome de usuário</label>
-                            <input
+                        <br></br>
+                        <Stack>
+                            <label color='white'>Nome de usuário</label>
+                            <TextField
                                 type="text"
                                 placeholder='Nome de usuário'
                                 name="username"
                                 required
                                 onChange={e => setUsername(e.target.value)}
                             />
-                        </div>
+                        </Stack>
+                         <br></br>
 
-                        <div>
-                            <label htmlFor="password" color='white'>Crie sua senha</label>
+                        <Stack>
+                            <label > Crie sua senha</label>
 
-                            <input
+                            <TextField
                                 type="password"
                                 placeholder="Senha"
                                 name="password"
                                 required
                                 onChange={e => setPassword(e.target.value)}
                             />
-                        </div>
+                            <br></br>
+                        </Stack>
 
-                        <div className='btns_acesso'>
-                            <Stack direction="row" spacing={2}>
+                        
+                        <Stack direction="row" spacing={1}>
+                            <Button className='btn-Registrar' type="submit" variant="contained" endIcon={<SendIcon />}>Registrar</Button>
+                            <Link to="/" className='Link_rotas'>
+                                <Button className='btn-Logar' variant="contained">Login</Button>
+                            </Link>
+                        </Stack>
 
-                                <Button className='btn-Registrar' type="submit" variant="contained" endIcon={<SendIcon />}>Registrar</Button>
-                                <Link to="/" className='Link_rotas'>
-                                    <Button className='btn-Logar' variant="contained">Login</Button>
-                                </Link>
-                            </Stack>
-                        </div>
                     </form>
                 </Box>
             </div>

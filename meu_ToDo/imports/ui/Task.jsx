@@ -58,7 +58,7 @@ export const Task = ({ task, onCheckboxClick, onDeleteClick, onEditClick }) => {
                 value={task.status}
                 label="Status"
                 onChange={(e) => { SaveStatus(id = task._id, s = e.target.value) }}
-                disabled={verifyUser(task.userId)}
+    
                 size='small'
               >
                 <MenuItem value={1}>Cadastrada</MenuItem>

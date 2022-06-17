@@ -136,7 +136,7 @@ export const App = () => {
                   </CardContent>
                   <CardActions  >
                     <Link to="/Gerir" className='Link_rotas'>
-                    <Typography sx={{ fontSize: 14 }} ml='7em'  color="white" variant='body1' gutterBottom>
+                    <Typography sx={{ fontSize: 14 }} fontWeight='bold' ml='7em'  color="white" variant='body1' gutterBottom>
                       {'   > Ir para tarefas'}
                       </Typography>
                     </Link>

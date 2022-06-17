@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import { Box } from '@mui/material';
+import TextField from '@mui/material/TextField';
+
 
 export const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -26,9 +28,9 @@ export const LoginForm = () => {
           </div>
         </div>
       </header>
-      <Box sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'rgba(100, 136, 110, 0.450)', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, marginBottom: 3, borderRadius: 5, marginTop:2 }}>
+      <Box display="flex" justifyContent="center" alignItems="center" sx={{ overflow: 'auto', flexGrow: 1, bgcolor: 'rgba(100, 136, 110, 0.450)', maxWidth: 0.85, minWidth: 0.45, marginLeft: 10, marginBottom: 3, borderRadius: 5, marginTop: 2 }}>
 
-        <form onSubmit={submit} className="login-form">
+        <form onSubmit={submit} className="register-form">
 
           <h2>
             Olá :)
@@ -37,41 +39,42 @@ export const LoginForm = () => {
             Faça login para gerenciar suas tarefas
           </h3>
 
-          <div>
+          <Stack>
 
-            <label htmlFor="username" color='white'>Nome de usuário</label>
-            <input
+            <label >Nome de usuário</label>
+            <TextField
               type="text"
               placeholder='Nome de usuário'
               name="username"
               required
               onChange={e => setUsername(e.target.value)}
             />
-          </div>
+          </Stack>
+          <br></br>
+          <Stack>
+            <label>Senha</label>
 
-          <div>
-            <label htmlFor="password" color='white'>Senha</label>
-
-            <input
+            <TextField
               type="password"
               placeholder="Senha"
               name="password"
               required
               onChange={e => setPassword(e.target.value)}
             />
-          </div>
+            <br></br>
+          </Stack>
 
-          <div className='btns_acesso'>
-            <Stack direction="row" spacing={2}>
 
-              <Button className='Registro' variant="contained" type="submit" endIcon={<Fingerprint />}>Entrar</Button>
-              {
-                <Link to="/Reg" className='Link_rotas'>
-                  <Button className='Registro' variant="contained" >Criar conta</Button>
-                </Link>
-              }
-            </Stack>
-          </div>
+          <Stack direction="row" spacing={2}>
+
+            <Button className='Registro' variant="contained" type="submit" endIcon={<Fingerprint />}>Entrar</Button>
+            {
+              <Link to="/Reg" className='Link_rotas'>
+                <Button className='Registro' variant="contained" >Criar conta</Button>
+              </Link>
+            }
+          </Stack>
+
         </form>
       </Box>
     </div>
