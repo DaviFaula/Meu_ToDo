@@ -47,7 +47,7 @@ export const Perfil = () => {
 
     const [isEdit, SetisEdit] = useState(false);
 
-    //  const [job, SetJob] = useState('none');
+    
     // const [bday, SetBday] = useState('2022-01-01');
     // const [gender, SetGender] = useState(3);
     // const [email, SetEmail] = useState('none');

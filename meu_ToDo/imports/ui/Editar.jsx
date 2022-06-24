@@ -35,12 +35,13 @@ export const Editar = () => {
             return { ...noDataAvailable, isLoading: true };
         } else {
 
-            const task = TasksCollection.find(id).fetch();
+            const task = TasksCollection.findOne(id);
             return { task }
         }
     });
-
-
+    console.log("ESTE AQUI - CHEGAMOS AQUI 1 >>>>>",task)
+    console.log("ESTE AQUI - CHEGAMOS AQUI 2 >>>>>",task?.text)
+    //const [dsc, setDsc] = useState(task['description']) ;
 
 
 
@@ -117,17 +118,17 @@ export const Editar = () => {
                             
                         </Stack >
                         <Stack marginBottom={3} display="flex" sx={{ overflow: 'auto' }}>
-                            <TextField value={isLoading ? 'Carregando...' : task[0]['text']}  onChange={((e)=>{SaveChange(t=e.target.value, d=task[0]['description'], s= task[0]['status'])})} variant="filled" disabled={(!isEdit)} helperText={'Título da tarefa'} sx={{ margin: 2, backgroundColor: "transparent" }} />
-                            <TextField value={isLoading ? 'Carregando...' : task[0]['description']} onChange={(e)=>{SaveChange( t=task[0]['text'], d=e.target.value, s= task[0]['status'])}} variant="filled" disabled={(!isEdit)} helperText={'Descrição da tarefa'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <TextField value={isLoading ? 'Carregando...' : task['text']}  onChange={((e)=>{SaveChange(t=e.target.value, d=task['description'], s= task['status'])})} variant="filled" disabled={(!isEdit)} helperText={'Título da tarefa'} sx={{ margin: 2, backgroundColor: "transparent" }} />
+                            <TextField value={isLoading ? 'Carregando...' : task['description']} onChange={(e)=>{SaveChange( t=task['text'], d=e.target.value, s= task['status'])}} variant="filled" disabled={(!isEdit)} helperText={'Descrição da tarefa'} sx={{ margin: 2, backgroundColor: "transparent" }} />
                             <Stack  direction="row" spacing={2} marginLeft={2} display="flex">
-                                <TextField value={isLoading ? 'Carregando...' : task[0]['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
-                                <TextField value={isLoading ? 'Carregando...' : task[0]['username']} variant="filled" disabled={(true)} helperText={'Criada por'} sx={{ backgroundColor: "transparent" }} />
-                                                               <TextField value={isLoading ? 'Carregando...' : task[0]['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
+                                <TextField value={isLoading ? 'Carregando...' : task['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
+                                <TextField value={isLoading ? 'Carregando...' : task['username']} variant="filled" disabled={(true)} helperText={'Criada por'} sx={{ backgroundColor: "transparent" }} />
+                                                               <TextField value={isLoading ? 'Carregando...' : task['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
 
                                 <FormControl>
                                     <InputLabel id="demo-simple-select-label">Status</InputLabel>
                                     <Select 
-                                        value={isLoading ? 'Carregando...' : task[0]['status']}
+                                        value={isLoading ? 'Carregando...' : task['status']}
                                         label="Status"
                                         onChange={(e)=>{isLoading ? {} :SaveStatus(s=e.target.value)}}
                                         disabled={(!isEdit)}
@@ -140,7 +141,7 @@ export const Editar = () => {
                                 <FormControl >
                                     <InputLabel >Privacidade</InputLabel>
                                     <Select 
-                                        value={isLoading ? 'Carregando...' : task[0]['privacy']}
+                                        value={isLoading ? 'Carregando...' : task['privacy']}
                                         label="Privacidade"
                                         onChange={(e)=>{isLoading ? {} :SavePvc(p=e.target.value)}}
                                         disabled={(!isEdit)}

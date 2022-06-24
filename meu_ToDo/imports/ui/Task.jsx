@@ -43,13 +43,19 @@ export const Task = ({ task, onCheckboxClick, onDeleteClick, onEditClick }) => {
 
       <List sx={{ bgcolor: 'background.paper', flexGrow: 1, minWidth: '300px', maxWidth: '900px', borderRadius: 1.5, borderStyle: 'groove' }} >
 
-        <ListItem >
-          <ListSharpIcon />
-          <Checkbox
+        <ListItem>
+          <Stack direction="row" mr={2} >
+            <ListSharpIcon />
+          </Stack>
+          {/*
+            <Checkbox
             checked={!!task.isChecked}
             onClick={() => onCheckboxClick(task)}
             readOnly />
+          */}
+
           <ListItemText primary={task.text} secondary={task.username} />
+
           <Stack direction="row" spacing={1}>
 
             <FormControl >
@@ -58,7 +64,7 @@ export const Task = ({ task, onCheckboxClick, onDeleteClick, onEditClick }) => {
                 value={task.status}
                 label="Status"
                 onChange={(e) => { SaveStatus(id = task._id, s = e.target.value) }}
-    
+
                 size='small'
               >
                 <MenuItem value={1}>Cadastrada</MenuItem>

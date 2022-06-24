@@ -104,7 +104,7 @@ export const App = () => {
             <div className='user' onClick={logout} >
               <h3 className='user'>{user.username}|sair</h3>
             </div>
-            <Box className='opcoes'>
+            <Box className='opcoes' >
               <Stack className='opcoes' direction="column" spacing={2} >
                 <Button className='btn_opcoes' variant="contained" onClick={() => setOpen(true)} endIcon={<ReceiptOutlined />}>Menu</Button>
                 <Drawer open={open} anchor={"left"} onClose={() => setOpen(false)}>
