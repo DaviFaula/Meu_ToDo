@@ -123,7 +123,6 @@ export const Editar = () => {
                             <Stack  direction="row" spacing={2} marginLeft={2} display="flex">
                                 <TextField value={isLoading ? 'Carregando...' : task['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
                                 <TextField value={isLoading ? 'Carregando...' : task['username']} variant="filled" disabled={(true)} helperText={'Criada por'} sx={{ backgroundColor: "transparent" }} />
-                                                               <TextField value={isLoading ? 'Carregando...' : task['createdAt']} variant="filled" disabled={(true)} helperText={'Data de criação'} sx={{ backgroundColor: "transparent" }} />
 
                                 <FormControl>
                                     <InputLabel id="demo-simple-select-label">Status</InputLabel>
