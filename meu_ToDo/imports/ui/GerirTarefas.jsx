@@ -23,8 +23,10 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import Pagination from '@mui/material/Pagination';
 import usePagination from '@mui/material/Pagination';
 import { display } from '@mui/system';
+import Search from '@mui/icons-material/Search';
 
 this.checkComplete = new ReactiveVar(false);
+this.upsearch = new ReactiveVar(false);
 function toggleChecked({ _id, isChecked }) {
   Meteor.call('tasks.setIsChecked', _id, !isChecked);
 }
@@ -33,9 +35,10 @@ function toggleChecked({ _id, isChecked }) {
 
 export const GerirTarefas = () => {
   const user = useTracker(() => Meteor.user());
-  const [hideCompleted, setHideCompleted] = useState(false);
+ 
 
   const [search, setSearch] = useState('');
+  const [searchText, setSearchText] = useState('');
 
   const [page, setPage] = useState(1);
   const PER_PAGE = 4;
@@ -67,7 +70,7 @@ export const GerirTarefas = () => {
     if (!Meteor.user()) {
       return noDataAvailable;
     }
-    const handler = Meteor.subscribe('tasks');
+    const handler = Meteor.subscribe('tasks',searchText,this.upsearch.get());
 
     if (!handler.ready()) {
       return { ...noDataAvailable, isLoading: true };
@@ -77,7 +80,8 @@ export const GerirTarefas = () => {
     const tasks = TasksCollection.find(
       (this.checkComplete.get()) ? { status: { $ne: 3 } } : {},
       {
-        sort: { createdAt: -1 },
+        skip:4*(page-1),
+        limit:4
       }
     ).fetch();
 
@@ -95,6 +99,8 @@ export const GerirTarefas = () => {
   });
 
   const goSearch = () => {
+    this.upsearch.set(true);
+    setSearchText(search);
     const tasksFounded = TasksCollection.find({ text: search }).count();
     (tasksFounded == 0) ? console.log("NADA AQUI AMIGAO") : console.log(TasksCollection.find({ text: search }).fetch())
 
@@ -160,6 +166,7 @@ export const GerirTarefas = () => {
                 disabled={isLoading}
                 onChange={
                   (e) => {
+                    this.upsearch.set(false);
                     setSearch(e.target.value);
                   }
                 }

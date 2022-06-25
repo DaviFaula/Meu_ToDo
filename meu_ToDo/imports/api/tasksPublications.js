@@ -1,15 +1,26 @@
 import { Meteor } from 'meteor/meteor';
 import { TasksCollection } from '/imports/api/TasksCollection';
 
-Meteor.publish('tasks', function publishTasks() {
+Meteor.publish('tasks', function publishTasks(search,upsearch) {
  
 
-  return TasksCollection.find({       
+  return  TasksCollection.find(upsearch?{
+    $and: [
+      {text: search},
+      {$or: [
+        { privacy: 2 },
+        { userId: this.userId },
+      ],}
+    ],
+    
+
+  }:{       
     $or: [
     { privacy: 2 },
     { userId: this.userId },
-  ],
-});
+  ]
+},{  sort: { createdAt: -1 }})
+
 });
 
 /// condição para MOSTRAR taferas: (se for pública )OU(for privada E o usuário que criou está logado)
